@@ -4,26 +4,28 @@ import view.*;
 import control.*;
 
 /**
- * Represente un departement avec son id, son nom et son investissement culturel
- * en 2019
+ * Représente un département avec son id, son nom et son investissement culturel
+ * en 2019.
  */
 public class Departement {
 
     /**
-     * C'est l'id pour chaque departement
+     * C'est l'id pour chaque département.
      */
     private int idDep;
+
     /**
-     * Le nom de chaque département
+     * Le nom de chaque département.
      */
     private String nomDep;
+
     /**
-     * L'investissement culturel pour l'année 2019
+     * L'investissement culturel pour l'année 2019.
      */
     private float invesCulturel2019;
 
     /**
-     * Constructeur vide du Departement
+     * Constructeur vide du Département.
      */
     public Departement() {
         this.idDep = 0;
@@ -32,57 +34,95 @@ public class Departement {
     }
 
     /**
-     * Constructeur du Departement
-     * 
-     * @param id    - L'id de chaque departement
-     * @param nom   - La nom de chaque département
-     * @param inves - Investissement culturel pour l'année 2019
-     * @throws IllegalAgumentException - Si le nom ou l'adresse est null
+     * Constructeur du Département.
+     *
+     * @param id    l'id de chaque département
+     * @param nom   le nom de chaque département
+     * @param inves l'investissement culturel pour l'année 2019
+     * @throws IllegalArgumentException si le nom est null ou si l'investissement est incorrect
      */
     public Departement(int id, String nom, float inves) {
-
-        if (idDep >= 0) {
-            if (nomDep != null) {
+        if (id >= 0) {
+            if (nom != null) {
                 if (inves >= 0) {
                     this.idDep = id;
                     this.nomDep = nom;
                     this.invesCulturel2019 = inves;
                 } else {
-                    throw new IllegalAgumentException("Departement : L'investissement est Incorrect !!!");
+                    throw new IllegalArgumentException("Departement : L'investissement est incorrect !!!");
                 }
             } else {
-                throw new IllegalAgumentException("Departement : Le nom de département est Null !!!");
+                throw new IllegalArgumentException("Departement : Le nom de département est null !!!");
             }
         } else {
-            throw new IllegalArgumentException("Departement : L'identifiant de département est Null !!!");
+            throw new IllegalArgumentException("Departement : L'identifiant de département est incorrect !!!");
         }
     }
 
-    public int setIdDep(){
+    /**
+     * Obtient l'id du département.
+     *
+     * @return l'id du département
+     */
+    public int getIdDep() {
         return this.idDep;
     }
 
-    public String setNomDep (){
-        return this.nomDep;
-    }
-
-    public float setInvestCulturel (){
-        return this.invesCulturel2019;
-    }
-
-    public void getIdDep(int id){
+    /**
+     * Définit l'id du département.
+     *
+     * @param id le nouvel id du département
+     */
+    public void setIdDep(int id) {
         this.idDep = id;
     }
 
-    public void getNomDep(){
+    /**
+     * Obtient le nom du département.
+     *
+     * @return le nom du département
+     */
+    public String getNomDep() {
         return this.nomDep;
     }
 
-    public void getInvestCulturel (){
-        return this.investCulturel2019;
+    /**
+     * Définit le nom du département.
+     *
+     * @param nom le nouveau nom du département
+     */
+    public void setNomDep(String nom) {
+        this.nomDep = nom;
     }
 
-    public void getNomDep(String nom){
-        this.nomDep
+    /**
+     * Obtient l'investissement culturel pour l'année 2019.
+     *
+     * @return l'investissement culturel pour l'année 2019
+     */
+    public float getInvestCulturel() {
+        return this.invesCulturel2019;
+    }
+
+    /**
+     * Définit l'investissement culturel pour l'année 2019.
+     *
+     * @param invest le nouvel investissement culturel pour l'année 2019
+     */
+    public void setInvestCulturel(float invest) {
+        this.invesCulturel2019 = invest;
+    }
+
+    /**
+     * Retourne une représentation sous forme de chaîne de caractères du département.
+     *
+     * @return une représentation sous forme de chaîne de caractères du département
+     */
+    public String toString() {
+        String idDepStr = "Identifiant du département : " + this.idDep;
+        String nomDepStr = "Nom du département : " + this.nomDep;
+        String investCulturelStr = "Investissement Culturel de 2019 : " + this.invesCulturel2019;
+
+        return idDepStr + "\n" + nomDepStr + "\n" + investCulturelStr;
     }
 }
