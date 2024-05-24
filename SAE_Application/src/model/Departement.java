@@ -74,6 +74,14 @@ public class Departement {
         this.idDep = id;
     }
 
+    public void getNomDep(){
+        return this.nomDep;
+    }
+
+    public void getInvestCulturel (){
+        return this.investCulturel2019;
+    }
+
     public void getNomDep(String nom){
         this.nomDep
     }
