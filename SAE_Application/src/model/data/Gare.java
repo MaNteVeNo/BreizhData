@@ -25,6 +25,10 @@ public class Gare {
      * Indique si la gare est une gare de voyageur.
      */
     private boolean estVoyageur;
+    /**
+     * Commune pour les gares
+     */
+    private Commune laCommune;
 
     /**
      * Constructeur vide de la Gare.
@@ -139,10 +143,12 @@ public class Gare {
      */
     @Override
     public String toString() {
+
         String code = "Le code de la gare est : " + this.codeGare;
         String nom = "Le nom de la gare est : " + this.nomGare;
         String estFret = "L'état de estFret est : " + this.estFret;
         String estVoyageur = "L'état de estVoyageur est : " + this.estVoyageur;
-        return code + "\n" + nom + "\n" + estFret + "\n" + estVoyageur;
+
+        return "CodeGare : " + code + "\n" + "NomGare : " + nom + "\n" + "EstFret : " + estFret + "\n" + "EstVoyageur : " + estVoyageur;
     }
 }

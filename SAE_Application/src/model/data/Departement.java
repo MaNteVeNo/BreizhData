@@ -1,4 +1,5 @@
 package model.data;
+import java.util.ArrayList;
 
 
 
@@ -20,6 +21,10 @@ public class Departement {
      * L'investissement culturel pour l'année 2019
      */
     private float invesCulturel2019;
+    /**
+     * ArrayList des aéroports
+     */
+    private ArrayList<Aeroport> lesAeroports;
 
     /**
      * Constructeur vide du Departement
@@ -69,6 +74,22 @@ public class Departement {
         return this.invesCulturel2019;
     }
 
+        public ArrayList<Aeroport> getLesAeroports() {
+        return this.lesAeroports;
+    }
+
+    public void setLesAeroports(ArrayList<Aeroport> lesAeroports) {
+        this.lesAeroports = lesAeroports;
+    }
+
+    /**
+     * Calcule le nombre total d'aéroports dans le département
+     * 
+     * @return le nombre d'aéroports
+     */
+    public int getNombreAeroports() {
+        return this.lesAeroports.size();
+    }
 
     
 

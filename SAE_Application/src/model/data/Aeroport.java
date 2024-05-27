@@ -1,5 +1,6 @@
 package model.data;
 
+import java.util.ArrayList;
 
 /**
  * Représente un aéroport avec un nom et une adresse.
@@ -7,6 +8,7 @@ package model.data;
 public class Aeroport {
     private String nom; // nom de l'aéroport
     private String adresse; // adresse de l'aéroport
+    private Departement leDepartement; // departement de l'aéoroport
 
     /**
      * Constructeur par défaut qui initialise l'aéroport avec un nom et une adresse vides.
@@ -23,11 +25,12 @@ public class Aeroport {
      * @param adresse l'adresse de l'aéroport
      * @throws IllegalArgumentException si le nom ou l'adresse est null
      */
-    public Aeroport(String nom, String adresse) throws IllegalArgumentException {
+    public Aeroport(String nom, String adresse, Departement leDepartement) throws IllegalArgumentException {
         if (nom != null) {
             if (adresse != null) {
                 this.nom = nom;
                 this.adresse = adresse;
+                this.leDepartement = leDepartement;
             } else {
                 throw new IllegalArgumentException("L'adresse de l'aéroport est null");
             }
@@ -54,6 +57,10 @@ public class Aeroport {
         return this.adresse;
     }
 
+    public Departement getLeDepartement() {
+        return this.leDepartement;
+    }
+
     /**
      * Définit le nom de l'aéroport.
      *
@@ -72,6 +79,10 @@ public class Aeroport {
         this.adresse = adresse;
     }
 
+    public void setLeDepartement(Departement leDepartement) {
+    this.leDepartement = leDepartement;
+    }
+
     /**
      * Retourne une représentation sous forme de chaîne de caractères de l'aéroport.
      *
@@ -80,4 +91,22 @@ public class Aeroport {
     public String toString() {
         return ("L'aéroport se nomme : " + this.nom + "\n" + "Et se situe à cette adresse: " + this.adresse);
     }
+
+    /**
+     * Méthode qui retourne la commune à laquelle appartient l'aéroport en fonction de son adresse.
+     * 
+     * @param communes la liste des communes disponibles
+     * @return la commune à laquelle appartient l'aéroport, ou null si aucune correspondance n'est trouvée
+     */
+    public Commune findCommune(ArrayList<Commune> communes) {
+        Commune res = null;
+        for (Commune commune : communes) {
+            if (this.adresse.contains(commune.getNomCommune())) {
+                res = commune;
+            }
+        }
+        return res;
+    }
+
+
 }

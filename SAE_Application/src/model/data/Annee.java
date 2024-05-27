@@ -79,6 +79,10 @@ public class Annee{
      * @return une représentation sous forme de chaîne de caractères de l'année et de son taux d'inflation
      */
     public String toString() {
+
+        int annee = this.annee;
+        float tauxInflation = this.tauxInflation;
+        
         return "Voici l'année : " + this.annee + " et son taux d'inflation : " + this.tauxInflation;
     }
 }
