@@ -1,11 +1,11 @@
-package model;
+package model.data;
 import view.*;
 import model.*;
 
 /**
  * Represente les donnée annuelles pour une commune
  */
-public class DonneeAnnuelle{
+public class DonneesAnnuelle{
 
     /**
      * nombre de maison dans une commune
@@ -43,7 +43,7 @@ public class DonneeAnnuelle{
 /**
  * Constructeur vide de DonneAnnuelle
  */
-    public DonneeAnnuelle(){
+    public DonneesAnnuelle(){
         
         this.nbMaison = 0;
         this.nbAppart = 0;
@@ -67,7 +67,7 @@ public class DonneeAnnuelle{
  * @param pop - Population d'une commune
  * @throws IllegalArgumentException si l'année ou le taux d'inflation est incorrect
  */
-    public DonneeAnnuelle(int maison, int appart, float LePrixMoyen, float LePrixM2Moyen, float LaSurfaceMoy, float depenses, float budget, float pop){
+    public DonneesAnnuelle(int maison, int appart, float LePrixMoyen, float LePrixM2Moyen, float LaSurfaceMoy, float depenses, float budget, float pop){
 
         if(maison >= 0 && appart >= 0 && LePrixMoyen >= 0 && LePrixM2Moyen >= 0 && LaSurfaceMoy >=0 && depenses >= 0 && budget >= 0 && pop >= 0){
 

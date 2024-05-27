@@ -1,9 +1,6 @@
-package model;
-import view.*;
-import control.*;
-/**
- * fzef
- */
+package model.data;
+
+
 /**
  * Représente un aéroport avec un nom et une adresse.
  */

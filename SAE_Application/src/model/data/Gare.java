@@ -1,7 +1,4 @@
-package model;
-
-import view.*;
-import control.*;
+package model.data;
 
 /**
  * Représente la gare par son code, son nom, et si c'est une gare de commerce ou

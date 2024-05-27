@@ -1,6 +1,5 @@
-package model;
-import view.*;
-import control.*;
+package model.data;
+
 
 /**
  * Représente une année avec son taux d'inflation.
