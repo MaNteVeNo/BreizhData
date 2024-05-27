@@ -141,35 +141,85 @@ public class DonneeAnnuelle{
         return this.population;
     }
 
+/**
+ * Définit le nombre de maisons.
+ * @param maison nombre de maison
+ */
     public void setNbMaison(int maison){
         this.nbMaison = maison;
     }
 
+/**
+ * Définit le nombre d'appartement.
+ * @param appart nombre d'appartement
+ */
     public void setNbAppart(int appart){
         this.nbAppart = appart;
     }
 
+/**
+ * Définit le prix moyen
+ * @param LePrixMoyen le prix moyen
+ */
     public void setPrixMoyen(float LePrixMoyen){
         this.prixMoyen = LePrixMoyen;
     }
 
+/**
+ * Définit le prix au m2 moyen
+ * @param LePrixM2Moyen le prix au m2 moyen
+ */
     public void setPrixM2Moyen(float LePrixM2Moyen){
         this.prixM2Moyen = LePrixM2Moyen;
     }
 
+/**
+ * Définit la surface
+ * @param surface la surface
+ */
     public void setSurfaceMoy(float surface){
         this.surfaceMoy = surface;
     }
 
+/**
+ * Définit les depenses de la commune
+ * @param depenses les dépenses de la commune
+ */
     public void setDepCulturellesTotales(float depenses){
         this.depCulturellesTotales = depenses;
     }
 
+/**
+ * Définit le budget de la commune
+ * @param budget le budget
+ */
     public void setBudgetTotal(float budget){
         this.budgetTotal = budget;
     }
 
+/**
+ * Définit la population de la commune
+ * @param pop la population
+ */
     public void setPopulation(float pop){
         this.population = pop;
+    }
+
+/**
+ * Retourne une représentation sous forme de chaîne de caractères des données annuelles
+ * @return une représentation sous forme de chaîne de caractères des données annuelles
+ */
+    public String toString() {
+
+        String nbMaison = "Nombre de maison : " + this.nbMaison;
+        String nbAppart = "Nombre d'appartement : " + this.nbAppart;
+        String prixMoyen = "Prix moyen : " + this.prixMoyen;
+        String prixM2Moyen = "Prix m2 moyen : " + this.prixM2Moyen;
+        String surfaceMoy = "Surface moyenne : " + this.surfaceMoy;
+        String depCulturellesTotales = "Depenses culturelles totales : " + this.depCulturellesTotales;
+        String budgetTotal = "Budget total : " + this.budgetTotal;
+        String population = "Population : " + this.population;
+
+        return nbMaison + "\n" + nbAppart + "\n" + prixMoyen + "\n" + prixM2Moyen + "\n" + surfaceMoy + "\n" + depCulturellesTotales + "\n" + budgetTotal + "\n" + population;
     }
 }
