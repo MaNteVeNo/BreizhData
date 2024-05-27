@@ -1,6 +1,5 @@
-package model;
-import view.*;
-import control.*;
+package model.data;
+
 
 /**
  * Represente une commune avec son id et son nom
