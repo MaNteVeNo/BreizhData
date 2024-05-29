@@ -16,6 +16,7 @@ public class IntroScene extends BorderPane{
    
     public IntroScene(BDFirstController controller) {
         
+        this.controller = controller;
         initialize();
     }
 
