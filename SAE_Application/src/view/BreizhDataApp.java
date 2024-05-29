@@ -7,19 +7,21 @@ import javafx.stage.Stage;
 public class BreizhDataApp extends Application {
 
     private BDFirstController controller;
-    private IntroScene introScene;
-    private ConnexionScene connexionScene;
-    
+    private IntroView introView;
+    private ConnexionView connexionView;
+    private Scene introScene;
+    private Scene connexionScene;
 
     public void start(Stage primaryStage) {
         this.controller = new BDFirstController(primaryStage, this);
-        this.introScene = new IntroScene(controller);
-        this.connexionScene = new ConnexionScene(controller);
+        this.introView = new IntroView(controller);
+        this.connexionView = new ConnexionView(controller);
 
-        Scene scene = new Scene(introScene, 1500, 1000);        
+        this.introScene = new Scene(introView, 1500, 1000);
+        this.connexionScene = new Scene(connexionView, 1500, 1000);
 
         primaryStage.setTitle("BreizhData");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(introScene);
         primaryStage.show();
     }
 
@@ -27,13 +29,19 @@ public class BreizhDataApp extends Application {
         launch(args);
     }
 
-    public IntroScene getIntroScene() {
+    public IntroView getIntroView() {
+        return this.introView;
+    }
+
+    public ConnexionView getConnexionView() {
+        return this.connexionView;
+    }
+
+    public Scene getIntroScene() {
         return this.introScene;
     }
 
-    public ConnexionScene getConnexionScene() {
+    public Scene getConnexionScene() {
         return this.connexionScene;
     }
-
 }
-

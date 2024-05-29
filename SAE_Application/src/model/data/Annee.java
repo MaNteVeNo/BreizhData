@@ -1,5 +1,11 @@
 package model.data;
 
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
+
+
 /**
  * Représente une année avec son taux d'inflation.
  */
@@ -17,6 +23,7 @@ public class Annee {
     public Annee() {
         this.annee = 0;
         this.tauxInflation = 0;
+        this.tauxInflationParAnnee = new HashMap<>();
     }
 
     /**

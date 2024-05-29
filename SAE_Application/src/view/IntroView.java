@@ -7,14 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-public class IntroScene extends BorderPane{
+public class IntroView extends BorderPane{
 
     private BDFirstController controller;
     private VBox layout;
     private Label welcomeLabel;
     private Button startButton;
    
-    public IntroScene(BDFirstController controller) {
+    public IntroView(BDFirstController controller) {
         
         this.controller = controller;
         initialize();
