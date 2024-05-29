@@ -34,6 +34,8 @@ public class IntroScene extends BorderPane{
 
         layout.getChildren().addAll(welcomeLabel, startButton);
 
+        this.setCenter(layout);
+
     }
 
     public Button getStartButton() {
