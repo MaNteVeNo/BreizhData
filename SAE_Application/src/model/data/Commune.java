@@ -56,18 +56,38 @@ public class Commune {
         }
     }
 
+    /**
+     * Obtient l'id de la commune
+     * 
+     * @return l'id de la commune
+     */
     public int getIdCommune() {
         return this.idCommune;
     }
 
+    /**
+     * Obtient le nom de la commune
+     * 
+     * @return le nom de la commune
+     */
     public String getNomCommune() {
         return this.nomCommune;
     }
 
+    /**
+     * Définit l'id de la commune
+     * 
+     * @param commune l'id de la commune
+     */
     public void setIdCommune(int commune) {
         this.idCommune = commune;
     }
 
+    /**
+     * Définit le nom de la commune
+     * 
+     * @param nom le nom de la commune
+     */
     public void setNomCommune(String nom) {
         this.nomCommune = nom;
     }
@@ -166,6 +186,13 @@ public class Commune {
         return this.lesGares.size();
     }
 
+    /**
+     * Retourne une représentation sous forme de chaîne de caractères de idCommune,
+     * nomCommune
+     * 
+     * @return une représentation sous forme de chaîne de caractères de idCommune,
+     *         nomCommune
+     */
     @Override
     public String toString() {
         String idCommune = "idCommune : " + this.idCommune;
