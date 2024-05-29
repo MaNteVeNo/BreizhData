@@ -8,11 +8,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class ConnexionScene extends BorderPane {
 
-    private Stage stage;
     private BDFirstController controller;
     private VBox layout;
     private TextField usernameField;
@@ -21,8 +19,8 @@ public class ConnexionScene extends BorderPane {
     private Button backButton;
     private Label messageLabel;
 
-
     public ConnexionScene(BDFirstController controller) {
+        this.controller = controller;
         initialize();
     }
 
@@ -39,16 +37,19 @@ public class ConnexionScene extends BorderPane {
 
         loginButton = new Button("Se connecter");
         loginButton.getStyleClass().add("button-start");
+        loginButton.setOnAction(controller);
 
         backButton = new Button("Retour");
         backButton.getStyleClass().add("button-back");
+        backButton.setOnAction(controller);
 
         messageLabel = new Label();
         messageLabel.setStyle("-fx-text-fill: red;");
 
         layout.getChildren().addAll(usernameField, passwordField, loginButton, backButton, messageLabel);
-    }
 
+        this.setCenter(layout);
+    }
 
     public Button getLoginButton() {
         return loginButton;
@@ -56,9 +57,5 @@ public class ConnexionScene extends BorderPane {
 
     public Button getBackButton() {
         return backButton;
-    }
-
-    public Stage getStage() {
-        return stage;
     }
 }
