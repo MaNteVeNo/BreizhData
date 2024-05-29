@@ -1,5 +1,7 @@
 package model.data;
 
+import java.util.List;
+
 /**
  * Représente la gare par son code, son nom, et si c'est une gare de commerce ou
  * de voyageur.
@@ -62,6 +64,23 @@ public class Gare {
         } else {
             throw new IllegalArgumentException("Le code de la gare est incorrect !!!");
         }
+    }
+
+     // Nouvelle méthode pour compter les gares similaires
+    /**
+     * Compte le nombre de gares dans une liste ayant les mêmes caractéristiques de commerce et de voyageur.
+     *
+     * @param gares la liste des gares à analyser
+     * @return le nombre de gares ayant les mêmes caractéristiques
+     */
+    public int compterGaresSimilaires(List<Gare> gares) {
+        int count = 0;
+        for (Gare gare : gares) {
+            if (gare.getEstFret() == this.estFret && gare.getEstVoyageur() == this.estVoyageur) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
