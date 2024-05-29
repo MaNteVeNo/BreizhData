@@ -85,16 +85,17 @@ public class Aeroport {
 
     /**
      * Retourne une représentation sous forme de chaîne de caractères de l'aéroport.
-     *
      * @return une représentation sous forme de chaîne de caractères de l'aéroport
      */
     public String toString() {
-        return ("L'aéroport se nomme : " + this.nom + "\n" + "Et se situe à cette adresse: " + this.adresse);
+
+        String nom = "Nom : " + this.nom;
+        String adresse = "Adresse : " + this.adresse;
+        return nom + "\n" + adresse + "\n";
     }
 
     /**
      * Méthode qui retourne la commune à laquelle appartient l'aéroport en fonction de son adresse.
-     * 
      * @param communes la liste des communes disponibles
      * @return la commune à laquelle appartient l'aéroport, ou null si aucune correspondance n'est trouvée
      */

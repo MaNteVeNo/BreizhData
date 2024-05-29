@@ -228,6 +228,6 @@ public class DonneesAnnuelle{
         String budgetTotal = "Budget total : " + this.budgetTotal;
         String population = "Population : " + this.population;
 
-        return nbMaison + "\n" + nbAppart + "\n" + prixMoyen + "\n" + "prixM2Moyen : " +prixM2Moyen + "\n" + "SurfaceMoy : " + surfaceMoy + "\n" + "DepensesCuturellesTotales : " + depCulturellesTotales + "\n" + "BudgetTotal : " + budgetTotal + "\n" + "Population : " + population;
+        return nbMaison + "\n" + nbAppart + "\n" + prixMoyen + "\n" +prixM2Moyen + "\n" + surfaceMoy + "\n" + depCulturellesTotales + "\n" + budgetTotal + "\n" + population;
     }
 }
