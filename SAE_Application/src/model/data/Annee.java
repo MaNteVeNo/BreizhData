@@ -80,9 +80,9 @@ public class Annee{
      */
     public String toString() {
 
-        int annee = this.annee;
-        float tauxInflation = this.tauxInflation;
+        String annee = "L'année : " + this.annee;
+        String tauxInflation = "TauxInflation : " + this.tauxInflation;
         
-        return "Voici l'année : " + this.annee + " et son taux d'inflation : " + this.tauxInflation;
+        return annee + "\n" + tauxInflation + "\n";
     }
 }

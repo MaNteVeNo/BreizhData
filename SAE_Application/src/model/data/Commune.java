@@ -73,9 +73,9 @@ public class Commune{
 
     public String toString(){
 
-        String idCommune = this.idCommune;
-        String nomCommune = this.nomCommune;
+        String idCommune = "idCommune : " + this.idCommune;
+        String nomCommune = "nomCommune : " + this.nomCommune;
 
-        return "idCommune : " + idCommune
+        return idCommune + "\n" + nomCommune + "\n";
     }
 }

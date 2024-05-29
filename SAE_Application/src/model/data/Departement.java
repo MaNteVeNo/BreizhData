@@ -74,8 +74,20 @@ public class Departement {
         return this.invesCulturel2019;
     }
 
-        public ArrayList<Aeroport> getLesAeroports() {
+    public ArrayList<Aeroport> getLesAeroports() {
         return this.lesAeroports;
+    }
+
+    public void setIdDep(int dep){
+        this.idDep = dep;
+    }
+
+    public void setNomDep(String nom){
+        this.nomDep = nom;
+    }
+
+    public void setInvesCulturel2019(float inves){
+        this.invesCulturel2019 = inves;
     }
 
     public void setLesAeroports(ArrayList<Aeroport> lesAeroports) {
@@ -84,13 +96,19 @@ public class Departement {
 
     /**
      * Calcule le nombre total d'aéroports dans le département
-     * 
      * @return le nombre d'aéroports
      */
     public int getNombreAeroports() {
         return this.lesAeroports.size();
     }
 
-    
+    public String toString(){
+        
+        String idDep = "idDep : " + this.idDep;
+        String nomDep = "nomDep : " + this.nomDep;
+        String invesCulturel2019 = "investCulturel2019 : " + this.invesCulturel2019;
+
+        return idDep + "\n" + nomDep + "\n" + invesCulturel2019 + "\n";
+    }
 
 }
