@@ -71,7 +71,6 @@ public class Annee{
      */
     public void setTauxInflation(float tauxInflation) {
         this.tauxInflation = tauxInflation;
-        System.out.println("test");
     }
 
     /**
