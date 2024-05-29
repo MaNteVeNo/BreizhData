@@ -149,15 +149,6 @@ public class DonneesAnnuelle {
     }
 
     /**
-     * Calcule la densité de population de la commune
-     * 
-     * @return la densité de population
-     */
-    public float calculerDensitePopulation() {
-        return this.population / this.surfaceMoy;
-    }
-
-    /**
      * Compare deux jeux de données annuelles pour vérifier s'ils sont identiques
      * 
      * @param autre - l'autre jeu de données annuelles à comparer
