@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-public class ConnexionScene extends BorderPane {
+public class ConnexionView extends BorderPane {
 
     private BDFirstController controller;
     private VBox layout;
@@ -19,7 +19,7 @@ public class ConnexionScene extends BorderPane {
     private Button backButton;
     private Label messageLabel;
 
-    public ConnexionScene(BDFirstController controller) {
+    public ConnexionView(BDFirstController controller) {
         this.controller = controller;
         initialize();
     }
