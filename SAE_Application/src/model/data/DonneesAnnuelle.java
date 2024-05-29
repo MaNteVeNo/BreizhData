@@ -93,6 +93,18 @@ public class DonneesAnnuelle{
         }
     }
 
+     /**
+     * Méthode pour calculer la densité de population par rapport à la surface moyenne de la commune
+     * @return la densité de population (nombre d'habitants par unité de surface)
+     * @throws IllegalArgumentException si la surface moyenne est <= 0
+     */
+    public float calculerDensitePopulation() {
+        if (this.surfaceMoy <= 0) {
+            throw new IllegalArgumentException("La surface moyenne doit être supérieure à zéro pour calculer la densité de population.");
+        }
+        return this.population / this.surfaceMoy;
+    }
+
 /**
  * Obtient le nombre de maison
  * @return le nombre de maison
