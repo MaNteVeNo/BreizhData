@@ -11,7 +11,7 @@ import model.data.Departement;
 
 public class CommuneDAO extends DAO <Commune> {
 
-    private DepartementDAO
+    private DepartementDAO departementDAO = new DepartementDAO();
 
     public int create(Commune commune) {
         String query = "INSERT INTO commune(id, nom, departement) VALUES ('" + commune.getIdCommune() + "','" + commune.getNomCommune() + "','" + commune.getLeDepartement() + " ')";
@@ -52,7 +52,7 @@ public class CommuneDAO extends DAO <Commune> {
                 String nom = rs.getString("nom");
                 int departement = rs.getInt("leDepartement");
 
-                Departement leDepartement = 
+                Departement leDepartement = departementDAO.findDep(departement);
                 communes.add(new Commune(id, nom, leDepartement));
             }
         } catch (SQLException ex) {
