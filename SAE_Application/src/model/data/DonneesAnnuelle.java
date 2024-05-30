@@ -75,11 +75,11 @@ public class DonneesAnnuelle {
      * @throws IllegalArgumentException si l'année ou le taux d'inflation est
      *                                  incorrect
      */
-    public DonneesAnnuelle(int maison, int appart, float LePrixMoyen, float LePrixM2Moyen, float LaSurfaceMoy,
+    public DonneesAnnuelle(Commune commune, Annee an, int maison, int appart, float LePrixMoyen, float LePrixM2Moyen, float LaSurfaceMoy,
             float depenses, float budget, float pop) {
 
         if (maison >= 0 && appart >= 0 && LePrixMoyen >= 0 && LePrixM2Moyen >= 0 && LaSurfaceMoy >= 0 && depenses >= 0
-                && budget >= 0 && pop >= 0) {
+                && budget >= 0 && pop >= 0 && commune != null && an != null) {
 
             this.nbMaison = maison;
             this.nbAppart = appart;
@@ -89,8 +89,11 @@ public class DonneesAnnuelle {
             this.depCulturellesTotales = depenses;
             this.budgetTotal = budget;
             this.population = pop;
+            this.laCommune = commune;
+            this.lAnnee = an;
+
         } else {
-            throw new IllegalArgumentException("DonneAnnuelle : un des paramètres est null");
+            throw new IllegalArgumentException("DonneAnnuelle : un ou plusieurs paramètres sont invalides");
         }
     }
 

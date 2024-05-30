@@ -55,6 +55,21 @@ public class AnneeDAO extends DAO<Annee> {
         }
     }
 
+    public Annee findAnnee(int id) {
+        Annee an = null;
+        String query = "SELECT * FROM Annee WHERE annee=" + id;
+        try (Connection con = getConnection(); Statement st = con.createStatement()) {
+            ResultSet rs = st.executeQuery(query);
+            if (rs.next()) {
+                float inflation = rs.getFloat("tauxInflation");
+                an = new Annee(id, inflation);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return an;
+    }
+
     public List<Annee> findAll() {
         this.annees.clear(); 
         try (Connection con = getConnection(); Statement st = con.createStatement()) {
