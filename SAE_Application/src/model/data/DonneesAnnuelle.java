@@ -1,4 +1,4 @@
-package model.data;
+6package model.data;
 
 import view.*;
 import model.*;
@@ -217,6 +217,15 @@ public class DonneesAnnuelle {
      */
     public float getDepCulturellesTotales() {
         return this.depCulturellesTotales;
+    }
+
+    /**
+     * Obtient le budget total
+     * 
+     * @return le budget total
+     */
+    public float getBudgetTotal() {
+        return this.budgetTotal;
     }
 
     /**

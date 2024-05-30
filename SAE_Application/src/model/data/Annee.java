@@ -32,14 +32,14 @@ public class Annee {
      *
      * @param annee     l'année
      * @param inflation le taux d'inflation
-     * @throws IllegalArgumentException si l'année ou le taux d'inflation est
-     *                                  incorrect
+     * @throws IllegalArgumentException si l'année ou le taux d'inflation est incorrect
      */
     public Annee(int annee, float inflation) {
         if (annee >= 0) {
             if (inflation >= 0) {
                 this.annee = annee;
                 this.tauxInflation = inflation;
+                this.tauxInflationParAnnee = new HashMap<>();
             } else {
                 throw new IllegalArgumentException("Le taux d'inflation est incorrect");
             }
@@ -55,7 +55,7 @@ public class Annee {
 
     // Méthode pour récupérer le taux d'inflation pour une année donnée
     public float tauxInflationParAnnee(int annee) {
-        Float tauxInflation = tauxInflationParAnnee.get(annee);
+        float tauxInflation = tauxInflationParAnnee.get(annee);
         if (tauxInflation == null) {
             // Si aucun taux d'inflation n'est trouvé pour cette année, renvoie 0
             return 0;
@@ -88,11 +88,14 @@ public class Annee {
      *         et l'année avec le taux d'inflation le plus faible en deuxième
      *         position.
      */
-    public List<Integer> anneesAvecPlusFaibleEtPlusElevéTaux() {
+    public List<Integer> anneesAvecPlusFaibleEtPlusEleveTaux() {
+
         List<Integer> result = new ArrayList<>();
         int anneeMax = 0, anneeMin = 0;
         float tauxMax = Float.MIN_VALUE, tauxMin = Float.MAX_VALUE;
+
         for (Map.Entry<Integer, Float> entry : tauxInflationParAnnee.entrySet()) {
+
             int annee = entry.getKey();
             float taux = entry.getValue();
             if (taux > tauxMax) {
@@ -126,6 +129,7 @@ public class Annee {
      * @return true si le taux d'inflation a été supprimé avec succès, sinon false.
      */
     public boolean supprimerTauxInflation(int annee) {
+        
         if (tauxInflationParAnnee.containsKey(annee)) {
             tauxInflationParAnnee.remove(annee);
             return true;

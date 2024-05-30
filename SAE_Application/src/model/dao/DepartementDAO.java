@@ -1,4 +1,3 @@
-/*
 package model.dao;
 
 import java.sql.Connection;
@@ -10,6 +9,24 @@ import java.util .*;
 import model.data.Departement;
 
 public class DepartementDAO extends DAO <Departement> {
+
+
+    private List<Departement> deps;
+
+    public DepartementDAO() {
+        deps = new LinkedList <>();
+        try (Connection con = getConnection (); Statement st = con.createStatement ()) {
+            ResultSet rs = st.executeQuery("SELECT * FROM Departement");
+            while (rs.next()) {
+                int idDep = rs.getInt("idDep");
+                String nomDep = rs.getString("nomDep");
+                float invest = rs.getFloat("invesCulturel2019");
+                deps.add(new Departement(idDep, nomDep, invest));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace ();
+        }
+    }
 
     public int create(Departement dep) {
         String query = "INSERT INTO Departement(idDep, nomDep, invesCulturel2019) VALUES ('" + dep.getIdDep() + "','" + dep.getNomDep() + "','" + dep.getInvesCulturel2019() + " ')";
@@ -41,14 +58,32 @@ public class DepartementDAO extends DAO <Departement> {
         }
     }
 
+    public Departement findDep(int id) {
+        Departement departement = null;
+        String query = "SELECT * FROM departement WHERE id=" + id;
+        try (Connection con = getConnection(); Statement st = con.createStatement()) {
+            ResultSet rs = st.executeQuery(query);
+            if (rs.next()) {
+                String nom = rs.getString("nom");
+                float invest = rs.getFloat("invesCulturel2019");
+                departement = new Departement(id, nom, invest); 
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return departement;
+    }
+
+
     public List <Departement> findAll () {
         List <Departement> deps = new LinkedList <>();
         try (Connection con = getConnection (); Statement st = con.createStatement ()) {
             ResultSet rs = st.executeQuery("SELECT * FROM Departement");
             while (rs.next()) {
-                String idDep = rs.getString("idDep");
+                int idDep = rs.getInt("idDep");
                 String nomDep = rs.getString("nomDep");
-                deps.add(new Departement(idDep, nomDep));
+                float invest = rs.getFloat("invesCulturel2019");
+                deps.add(new Departement(idDep, nomDep, invest));
             }
         } catch (SQLException ex) {
             ex.printStackTrace ();
@@ -56,4 +91,3 @@ public class DepartementDAO extends DAO <Departement> {
         return deps;
     }
 }
-*/
