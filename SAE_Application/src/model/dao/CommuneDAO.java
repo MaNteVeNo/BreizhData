@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.data.Commune;
@@ -12,11 +12,11 @@ import model.data.Departement;
 
 public class CommuneDAO extends DAO<Commune> {
 
-    private List<Commune> comms;
+    private ArrayList<Commune> comms;
     private DepartementDAO departementDAO = new DepartementDAO();
 
     public CommuneDAO() {
-        this.comms = new LinkedList<>();
+        this.comms = new ArrayList<>();
     }
 
     public int create(Commune commune) {
