@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util .*;
 
 import model.data.Annee;
+import model.data.Departement;
 
 public class AnneeDAO extends DAO <Annee> {
 
@@ -39,6 +40,7 @@ public class AnneeDAO extends DAO <Annee> {
             return -1;
         }
     }
+
 
     public List <Annee> findAll () {
         List <Annee> annees = new LinkedList <>();
