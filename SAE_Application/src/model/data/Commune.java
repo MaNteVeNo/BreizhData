@@ -45,10 +45,11 @@ public class Commune {
      * @param nom - nom de la commune
      * @throws IllegalArgumentException si le nom ou l'adresse est null
      */
-    public Commune(int id, String nom) {
+    public Commune(int id, String nom, Departement departement) {
         if (id >= 0 && nom != null) {
             this.idCommune = id;
             this.nomCommune = nom;
+            this.leDepartement = departement;
             this.lesGares = new ArrayList<>();
             this.communesVoisines = new ArrayList<>();
         } else {
@@ -75,6 +76,15 @@ public class Commune {
     }
 
     /**
+     * Obtient le departememt de la commune
+     * 
+     * @return le departement
+     */
+    public Departement getLeDepartement() {
+        return this.leDepartement;
+    }
+
+    /**
      * Définit l'id de la commune
      * 
      * @param commune l'id de la commune
@@ -93,23 +103,12 @@ public class Commune {
     }
 
     /**
-     * Ajoute une commune voisine à la liste des communes voisines
+     * Définit le nom de la commune
      * 
-     * @param voisine - la commune voisine à ajouter
+     * @param departement le departement
      */
-    public void ajouterCommuneVoisine(Commune voisine) {
-        if (voisine != null && !this.communesVoisines.contains(voisine)) {
-            this.communesVoisines.add(voisine);
-        }
-    }
-
-    /**
-     * Supprime une commune voisine de la liste des communes voisines
-     * 
-     * @param voisine - la commune voisine à supprimer
-     */
-    public void supprimerCommuneVoisine(Commune voisine) {
-        this.communesVoisines.remove(voisine);
+    public void setLeDepartement(Departement departement) {
+        this.leDepartement = departement;
     }
 
     /**
@@ -125,25 +124,6 @@ public class Commune {
         return nomsVoisines;
     }
 
-    /**
-     * Ajoute une gare à la liste des gares
-     * 
-     * @param gare - la gare à ajouter
-     */
-    public void ajouterGare(Gare gare) {
-        if (gare != null && !this.lesGares.contains(gare)) {
-            this.lesGares.add(gare);
-        }
-    }
-
-    /**
-     * Supprime une gare de la liste des gares
-     * 
-     * @param gare - la gare à supprimer
-     */
-    public void supprimerGare(Gare gare) {
-        this.lesGares.remove(gare);
-    }
 
     /**
      * Retourne la liste des noms des gares
