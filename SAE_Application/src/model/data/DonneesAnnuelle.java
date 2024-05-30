@@ -1,7 +1,4 @@
-6package model.data;
-
-import view.*;
-import model.*;
+package model.data;
 
 /**
  * Represente les donnée annuelles pour une commune
@@ -43,7 +40,7 @@ public class DonneesAnnuelle {
     /**
      * Année pour les données annuelles
      */
-    private Annee annee;
+    private Annee lAnnee;
     /**
      * Commune pour les données annuelles
      */
@@ -65,7 +62,7 @@ public class DonneesAnnuelle {
     }
 
     /**
-     * Constructeur des DonneeAnnuelle
+     * Constructeur de la classe DonneeAnnuelle
      * 
      * @param maison        - le nombre de maison par commune
      * @param appart        - le nombre d'appartement par commune
@@ -237,6 +234,13 @@ public class DonneesAnnuelle {
         return this.population;
     }
 
+    public Commune getLaCommune() {
+        return this.laCommune;
+    }
+
+    public Annee getLAnnee() {
+        return this.lAnnee;
+    }
     /**
      * Définit le nombre de maisons.
      * 
@@ -307,6 +311,14 @@ public class DonneesAnnuelle {
      */
     public void setPopulation(float pop) {
         this.population = pop;
+    }
+
+    public void setLaCommune(Commune comm) {
+        this.laCommune = comm;
+    }
+
+    public void setLAnnee(Annee annee) {
+        this.lAnnee = annee;
     }
 
     /**

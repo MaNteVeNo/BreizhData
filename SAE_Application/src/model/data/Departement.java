@@ -43,24 +43,24 @@ public class Departement {
      * @param inves - Investissement culturel pour l'année 2019
      * @throws IllegalArgumentException - Si le nom ou l'adresse est null
      */
-    public Departement(int id, String nom, float inves) {
-
-        if (idDep >= 0) {
-            if (nomDep != null) {
+    public Departement(int id, String nom, float inves) throws IllegalArgumentException {
+        if (id >= 0) {
+            if (nom != null) {
                 if (inves >= 0) {
                     this.idDep = id;
                     this.nomDep = nom;
                     this.invesCulturel2019 = inves;
                 } else {
-                    throw new IllegalArgumentException("Departement : L'investissement est Incorrect !!!");
+                    throw new IllegalArgumentException("Departement : L'investissement est incorrect !!!");
                 }
             } else {
-                throw new IllegalArgumentException("Departement : Le nom de département est Null !!!");
+                throw new IllegalArgumentException("Departement : Le nom du département est null !!!");
             }
         } else {
-            throw new IllegalArgumentException("Departement : L'identifiant de département est Null !!!");
+            throw new IllegalArgumentException("Departement : L'identifiant du département est incorrect !!!");
         }
     }
+    
 
     public int getIdDep(){
         return this.idDep;
