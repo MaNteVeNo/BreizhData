@@ -11,8 +11,13 @@ import model.data.Departement;
 
 public class AeroportDAO extends DAO <Aeroport> {
 
-    private List <Aeroport> aers = new LinkedList <>();
+    private ArrayList<Aeroport> aers;
     private DepartementDAO departementDAO = new DepartementDAO();
+
+
+    public AeroportDAO() {
+        this.aers = new ArrayList<Aeroport>();
+    }
 
     public int create(Aeroport aer) {
         this.aers.add(aer);
