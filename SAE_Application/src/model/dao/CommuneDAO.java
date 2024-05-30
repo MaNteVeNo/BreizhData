@@ -6,12 +6,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util .*;
 
-import model.data.Gare;
+import model.data.Commune;
+import model.data.Departement;
 
-public class GareDAO extends DAO <Gare> {
+public class CommuneDAO extends DAO <Commune> {
 
-    public int create(Gare gare) {
-        String query = "INSERT INTO gare(code, nom, estFret, estVoyageur) VALUES ('" + gare.getCodeGare() + "','" + gare.getNomGare() + "','" + gare.getEstFret() + "','" + gare.getEstVoyageur() +" ')";
+    public int create(Commune commune) {
+        String query = "INSERT INTO commune(id, nom, departement) VALUES ('" + commune.getIdCommune() + "','" + commune.getNomCommune() + "','" + commune.getLeDepartement() + " ')";
         try (Connection con = getConnection (); Statement st = con.createStatement ()) {
             return st.executeUpdate(query);
         } catch (SQLException ex) {
@@ -20,8 +21,8 @@ public class GareDAO extends DAO <Gare> {
         }
     }
 
-    public int update(Gare gare) {
-        String query = "UPDATE gare SET nom='" + gare.getNomGare() + "', PWD='" + gare.getCodeGare() + "' WHERE nom='" + gare.getNomGare() + "'";
+    public int update(Commune commune) {
+        String query = "UPDATE commune SET nom='" + commune.getNomCommune() + "', PWD='" + commune.getIdCommune() + "' WHERE nom='" + commune.getNomCommune() + "'";
         try (Connection con = getConnection (); Statement st = con.createStatement ()) {
             return st.executeUpdate(query);
         } catch (SQLException ex) {
@@ -30,8 +31,8 @@ public class GareDAO extends DAO <Gare> {
         }
     }
 
-    public int delete(Gare gare) {
-        String query = "DELETE FROM gare WHERE nom='" + gare.getNomGare() + "'";
+    public int delete(Commune commune) {
+        String query = "DELETE FROM commune WHERE nom='" + commune.getNomCommune() + "'";
         try (Connection con = getConnection (); Statement st = con.createStatement ()) {
             return st.executeUpdate(query);
         } catch (SQLException ex) {
@@ -40,20 +41,19 @@ public class GareDAO extends DAO <Gare> {
         }
     }
 
-    public List <Gare> findAll () {
-        List <Gare> gares = new LinkedList <>();
+    public List <Commune> findAll () {
+        List <Commune> communes = new LinkedList <>();
         try (Connection con = getConnection (); Statement st = con.createStatement ()) {
-            ResultSet rs = st.executeQuery("SELECT * FROM gare");
+            ResultSet rs = st.executeQuery("SELECT * FROM commune");
             while (rs.next()) {
-                int code = rs.getInt("code");
+                int id = rs.getInt("id");
                 String nom = rs.getString("nom");
-                Boolean estFret = rs.getBoolean("estFret");
-                Boolean estVoyageur = rs.getBoolean("estVoyageur");
-                gares.add(new Gare(code, nom, estFret, estVoyageur));
+                Departement leDepartement = rs.getLeDepartement("Le departement");
+                communes.add(new Commune(id, nom, leDepartement));
             }
         } catch (SQLException ex) {
             ex.printStackTrace ();
         }
-        return gares;
+        return communes;
     }
 }

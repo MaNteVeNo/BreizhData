@@ -74,13 +74,13 @@ public class Gare {
      * @return le nombre de gares ayant les mêmes caractéristiques
      */
     public int compterGaresSimilaires(List<Gare> gares) {
-        int count = 0;
+        int cpt = 0;
         for (Gare gare : gares) {
             if (gare.getEstFret() == this.estFret && gare.getEstVoyageur() == this.estVoyageur) {
-                count++;
+                cpt++;
             }
         }
-        return count;
+        return cpt;
     }
 
     /**
