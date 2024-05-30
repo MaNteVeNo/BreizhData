@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="982.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane dividerPositions="0.23469387755102042" prefHeight="668.0" prefWidth="982.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <AnchorPane layoutX="13.0" layoutY="221.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="200.0" fitWidth="200.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/logo.png" />
+                           </image></ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="666.0" prefWidth="712.0">
+               <children>
+                  <SplitPane dividerPositions="0.11295180722891567" layoutX="65.0" layoutY="84.0" orientation="VERTICAL" prefHeight="666.0" prefWidth="663.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="71.0" prefWidth="722.0">
+                           <children>
+                              <AnchorPane layoutX="306.0" layoutY="11.0" prefHeight="46.0" prefWidth="83.0">
+                                 <children>
+                                    <ImageView fitHeight="56.0" fitWidth="104.0" layoutX="41.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@image/profile.png" />
+                                       </image></ImageView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <SplitPane dividerPositions="0.42538593481989706" layoutX="6.0" layoutY="-14.0" orientation="VERTICAL" prefHeight="585.0" prefWidth="661.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="-14.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="140.0" prefWidth="659.0">
+                                       <children>
+                                          <TextArea layoutX="97.0" layoutY="72.0" prefHeight="145.0" prefWidth="387.0" text="BreizhData est une entreprise fondée dans le but de &#10;récolter des données afin de mettre en avant la région&#10;Bretagne, les données récoltées se base sûr l’attractivité&#10;,les communes, le nombres d’habitants, les lieux &#10;culturels, les transport, gare, aréaoport.&#10;A travers tout les données nous métons a votre &#10;dispotion notre outils qui vous permettre de naviguer&#10;dans toutes ces paramètres. " />
+                                          <Text layoutX="108.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Qui somme nous ?" wrappingWidth="141.0" />
+                                          <Button layoutX="97.0" layoutY="218.0" mnemonicParsing="false" text="En savoir plus" />
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="89.0" prefWidth="659.0">
+                                       <children>
+                                          <AnchorPane layoutX="554.0" layoutY="260.0" prefHeight="71.0" prefWidth="188.0" />
+                                          <SplitPane dividerPositions="0.5822147651006712" layoutX="68.0" layoutY="17.0" prefHeight="234.0" prefWidth="598.0">
+                                            <items>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Text layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nos données" />
+                                                      <TextArea layoutX="7.0" layoutY="32.0" prefHeight="71.0" prefWidth="327.0" text="Cette carte vous permet de  naviguer et de &#10;comparer les données exploitées" />
+                                                      <Button layoutX="14.0" layoutY="116.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Map" />
+                                                   </children>
+                                                </AnchorPane>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="209.0" prefWidth="299.0">
+                                                   <children>
+                                                      <ImageView fitHeight="226.0" fitWidth="245.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="22.56097412109375" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="23.0">
+                                                         <image>
+                                                            <Image url="@image/map.png" />
+                                                         </image></ImageView>
+                                                   </children>
+                                                </AnchorPane>
+                                            </items>
+                                          </SplitPane>
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
