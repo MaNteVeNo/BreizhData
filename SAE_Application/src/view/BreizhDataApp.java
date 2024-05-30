@@ -20,6 +20,7 @@ public class BreizhDataApp extends Application {
         this.introScene = new Scene(introView, 1500, 1000);
         this.connexionScene = new Scene(connexionView, 1500, 1000);
 
+
         primaryStage.setTitle("BreizhData");
         primaryStage.setScene(introScene);
         primaryStage.show();
