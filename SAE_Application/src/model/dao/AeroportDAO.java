@@ -12,6 +12,7 @@ import model.data.Departement;
 public class AeroportDAO extends DAO <Aeroport> {
 
     private List <Aeroport> aers = new LinkedList <>();
+    private DepartementDAO departementDAO = new DepartementDAO();
 
     public int create(Aeroport aer) {
         this.aers.add(aer);
@@ -53,14 +54,15 @@ public class AeroportDAO extends DAO <Aeroport> {
 
     public List <Aeroport> findAll () {
         
-        List <Aeroport> aers = new LinkedList <>();
         try (Connection con = getConnection (); Statement st = con.createStatement ()) {
             ResultSet rs = st.executeQuery("SELECT * FROM aeroport");
             while (rs.next()) {
                 String nom = rs.getString("nom");
                 String adresse = rs.getString("adresse");
-                Departement leDepartement = rs.getLeDepartement("leDepartement");
-                aers.add(new Aeroport(nom, adresse, leDepartement));
+                int departement = rs.getInt("leDepartement");
+
+                Departement leDepartement = departementDAO.findDep(departement);
+                this.aers.add(new Aeroport(nom, adresse, leDepartement));
             }
         } catch (SQLException ex) {
             ex.printStackTrace ();
