@@ -51,13 +51,14 @@ public class Gare {
      * @param voyageur si la gare est une gare de voyageur
      * @throws IllegalArgumentException si le nom est null
      */
-    public Gare(int code, String nom, boolean fret, boolean voyageur) {
+    public Gare(int code, String nom, boolean fret, boolean voyageur, Commune commune) {
         if (code >= 0) {
             if (nom != null) {
                 this.codeGare = code;
                 this.nomGare = nom;
                 this.estFret = fret;
                 this.estVoyageur = voyageur;
+                this.laCommune = commune;
             } else {
                 throw new IllegalArgumentException("Le nom de la Gare est NULL !!!");
             }
@@ -119,6 +120,10 @@ public class Gare {
         return this.estVoyageur;
     }
 
+    public Commune getLaCommune() {
+        return this.laCommune;
+    }
+
     /**
      * Définit le code de la gare.
      *
@@ -153,6 +158,10 @@ public class Gare {
      */
     public void setEstVoyageur(boolean estVoyageur) {
         this.estVoyageur = estVoyageur;
+    }
+
+    public void setLaCommune(Commune laCommune) {
+        this.laCommune = laCommune;
     }
 
     /**

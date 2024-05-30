@@ -58,6 +58,24 @@ public class CommuneDAO extends DAO<Commune> {
         }
     }
 
+    public Commune findComm(int id) {
+        Commune comm = null;
+        String query = "SELECT * FROM Commune WHERE idCommune=" + id;
+        try (Connection con = getConnection(); Statement st = con.createStatement()) {
+            ResultSet rs = st.executeQuery(query);
+            if (rs.next()) {
+                String nom = rs.getString("nomCommune");
+                int dep = rs.getInt("leDepartement");
+
+                Departement leDepartement = departementDAO.findDep(dep);
+                comm = new Commune(id, nom, leDepartement);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return comm;
+    }
+
     public List<Commune> findAll() {
         this.comms.clear(); 
         try (Connection con = getConnection(); Statement st = con.createStatement()) {

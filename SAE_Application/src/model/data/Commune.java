@@ -75,6 +75,14 @@ public class Commune {
         return this.nomCommune;
     }
 
+    public ArrayList<Gare> getLesGares() {
+        return lesGares;
+    }
+
+    public ArrayList<Commune> getCommunesVoisines() {
+        return communesVoisines;
+    }
+
     /**
      * Obtient le departememt de la commune
      * 
@@ -102,6 +110,14 @@ public class Commune {
         this.nomCommune = nom;
     }
 
+    public void setLesGares(ArrayList<Gare> lesGares) {
+        this.lesGares = lesGares;
+    }
+
+    public void setCommunesVoisines(ArrayList<Commune> communesVoisines) {
+        this.communesVoisines = communesVoisines;
+    }
+
     /**
      * Définit le nom de la commune
      * 
@@ -110,6 +126,8 @@ public class Commune {
     public void setLeDepartement(Departement departement) {
         this.leDepartement = departement;
     }
+
+
 
     /**
      * Retourne la liste des noms des communes voisines
