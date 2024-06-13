@@ -99,4 +99,12 @@ public class Departement {
     public void add(Aeroport aeroport) {
         this.lesAeroports.add(aeroport);
     }
+
+    public ArrayList<String> listerAeroport() {
+        ArrayList<String> nomsAeroport = new ArrayList<>();
+        for (Aeroport aeroport : this.lesAeroports) {
+            nomsAeroport.add(aeroport.getNom());
+        }
+        return nomsAeroport;
+    }
 }

@@ -110,13 +110,6 @@ public class Commune {
         this.nomCommune = nom;
     }
 
-    public void setLesGares(ArrayList<Gare> lesGares) {
-        this.lesGares = lesGares;
-    }
-
-    public void setCommunesVoisines(ArrayList<Commune> communesVoisines) {
-        this.communesVoisines = communesVoisines;
-    }
 
     /**
      * Définit le nom de la commune
@@ -128,6 +121,14 @@ public class Commune {
     }
 
 
+    public void addVoisine(Commune voisin) {
+        this.communesVoisines.add(voisin);
+    }
+
+    public void addGare(Gare gare) {
+        this.lesGares.add(gare);
+    }
+    
 
     /**
      * Retourne la liste des noms des communes voisines
