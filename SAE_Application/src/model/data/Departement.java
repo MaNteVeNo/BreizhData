@@ -1,7 +1,6 @@
 package model.data;
+
 import java.util.ArrayList;
-
-
 
 /**
  * Represente un departement avec son id, son nom et son investissement culturel
@@ -33,6 +32,7 @@ public class Departement {
         this.idDep = 0;
         this.nomDep = "";
         this.invesCulturel2019 = 0;
+        this.lesAeroports = new ArrayList<>();
     }
 
     /**
@@ -50,6 +50,7 @@ public class Departement {
                     this.idDep = id;
                     this.nomDep = nom;
                     this.invesCulturel2019 = inves;
+                    this.lesAeroports = new ArrayList<>();
                 } else {
                     throw new IllegalArgumentException("Departement : L'investissement est incorrect !!!");
                 }
@@ -61,7 +62,6 @@ public class Departement {
         }
     }
     
-
     public int getIdDep(){
         return this.idDep;
     }
@@ -72,10 +72,6 @@ public class Departement {
 
     public float getInvesCulturel2019() {
         return this.invesCulturel2019;
-    }
-
-    public ArrayList<Aeroport> getLesAeroports() {
-        return this.lesAeroports;
     }
 
     public void setIdDep(int dep){
@@ -90,25 +86,17 @@ public class Departement {
         this.invesCulturel2019 = inves;
     }
 
-    public void setLesAeroports(ArrayList<Aeroport> lesAeroports) {
-        this.lesAeroports = lesAeroports;
-    }
-
-    /**
-     * Calcule le nombre total d'aéroports dans le département
-     * @return le nombre d'aéroports
-     */
-    public int getNombreAeroports() {
-        return this.lesAeroports.size();
-    }
-
     public String toString(){
         
         String idDep = "idDep : " + this.idDep;
         String nomDep = "nomDep : " + this.nomDep;
         String invesCulturel2019 = "investCulturel2019 : " + this.invesCulturel2019;
+        String aeroports = "Aéroports : " + this.lesAeroports.toString();
 
-        return idDep + "\n" + nomDep + "\n" + invesCulturel2019 + "\n";
+        return idDep + "\n" + nomDep + "\n" + invesCulturel2019 + "\n" + aeroports + "\n";
     }
 
+    public void add(Aeroport aeroport) {
+        this.lesAeroports.add(aeroport);
+    }
 }
