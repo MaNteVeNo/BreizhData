@@ -1,6 +1,6 @@
 package model.data;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Représente la gare par son code, son nom, et si c'est une gare de commerce ou
@@ -67,14 +67,13 @@ public class Gare {
         }
     }
 
-     // Nouvelle méthode pour compter les gares similaires
     /**
      * Compte le nombre de gares dans une liste ayant les mêmes caractéristiques de commerce et de voyageur.
      *
      * @param gares la liste des gares à analyser
      * @return le nombre de gares ayant les mêmes caractéristiques
      */
-    public int compterGaresSimilaires(List<Gare> gares) {
+    public int compterGaresSimilaires(ArrayList<Gare> gares) {
         int cpt = 0;
         for (Gare gare : gares) {
             if (gare.getEstFret() == this.estFret && gare.getEstVoyageur() == this.estVoyageur) {
@@ -169,7 +168,6 @@ public class Gare {
      *
      * @return une représentation sous forme de chaîne de caractères de la gare
      */
-    @Override
     public String toString() {
 
         String code = "Le code de la gare est : " + this.codeGare;
@@ -179,4 +177,6 @@ public class Gare {
 
         return code + "\n" + nom + "\n" + estFret + "\n" + estVoyageur;
     }
+
+    
 }
