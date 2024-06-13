@@ -88,4 +88,16 @@ public class Annee {
 
         return annee + "\n" + tauxInflation + "\n";
     }
+
+    /**
+     * Compare le taux d'inflation de cette année avec une autre année.
+     *
+     * @param autre l'autre année à comparer
+     * @return une valeur négative si cette année a un taux d'inflation plus bas,
+     *         zéro si les taux sont égaux, une valeur positive si cette année a un
+     *         taux d'inflation plus élevé
+     */
+    public int comparerTauxInflation(Annee autre) {
+        return Float.compare(this.tauxInflation, autre.getTauxInflation());
+    }
 }

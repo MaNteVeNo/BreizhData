@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * Représente un aéroport avec un nom et une adresse.
  */
 public class Aeroport {
+
     private String nom; // nom de l'aéroport
     private String adresse; // adresse de l'aéroport
     private Departement leDepartement; // departement de l'aéoroport
@@ -108,6 +109,4 @@ public class Aeroport {
         }
         return res;
     }
-
-
 }

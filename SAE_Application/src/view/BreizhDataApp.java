@@ -16,5 +16,3 @@ public class BreizhDataApp extends Application {
         launch(args);
     }
 }
-
-
