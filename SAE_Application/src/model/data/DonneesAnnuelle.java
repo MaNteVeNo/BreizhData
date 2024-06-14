@@ -1,348 +1,411 @@
 package model.data;
 
 /**
- * Represente les donnée annuelles pour une commune
+ * Represents annual data for a commune.
  */
 public class DonneesAnnuelle {
 
     /**
-     * nombre de maison dans une commune
+     * Number of houses in a commune.
      */
     private int nbMaison;
+    
     /**
-     * nombre d'appartement dans une commune
+     * Number of apartments in a commune.
      */
     private int nbAppart;
+    
     /**
-     * prix moyen pour une commune
+     * Average price for a commune.
      */
     private float prixMoyen;
+    
     /**
-     * prix moyen au m2 pour une commune
+     * Average price per square meter for a commune.
      */
     private float prixM2Moyen;
+    
     /**
-     * surface moyenne d'une commune
+     * Average surface area of a commune.
      */
     private float surfaceMoy;
+    
     /**
-     * depenses culturelles totales d'une commune
+     * Total cultural expenses of a commune.
      */
     private float depCulturellesTotales;
+    
     /**
-     * budget total d'une commune
+     * Total budget of a commune.
      */
     private float budgetTotal;
+    
     /**
-     * population d'une commune
+     * Population of a commune.
      */
     private float population;
+    
     /**
-     * Année pour les données annuelles
+     * Year for the annual data.
      */
     private Annee lAnnee;
+    
     /**
-     * Commune pour les données annuelles
+     * Commune for the annual data.
      */
     private Commune laCommune;
 
-    /**
-     * Constructeur vide de DonneAnnuelle
-     */
-    public DonneesAnnuelle() {
+    //============================================ Constructor ============================================//
 
-        this.nbMaison = 0;
-        this.nbAppart = 0;
-        this.prixMoyen = 0;
-        this.prixM2Moyen = 0;
-        this.surfaceMoy = 0;
-        this.depCulturellesTotales = 0;
-        this.budgetTotal = 0;
-        this.population = 0;
+    /**
+     * Constructor for the DonneeAnnuelle class.
+     * 
+     * @param an             the year of the data
+     * @param commune        the commune for the data
+     * @param maison         the number of houses in the commune
+     * @param appart         the number of apartments in the commune
+     * @param LePrixMoyen    the average price in the commune
+     * @param LePrixM2Moyen  the average price per square meter in the commune
+     * @param LaSurfaceMoy   the average surface area in the commune
+     * @param depenses       the total cultural expenses of the commune
+     * @param budget         the total budget of the commune
+     * @param pop            the population of the commune
+     * @throws IllegalArgumentException if any of the parameters are invalid
+     */
+    public DonneesAnnuelle(Annee an, Commune commune, int maison, int appart, float LePrixMoyen, float LePrixM2Moyen, float LaSurfaceMoy, float depenses, float budget, float pop) throws IllegalArgumentException {
+
+        if (maison < 0) throw new IllegalArgumentException("DonneesAnnuelle: The number of houses is invalid");
+        if (appart < 0) throw new IllegalArgumentException("DonneesAnnuelle: The number of apartments is invalid");
+        if (LePrixMoyen < 0) throw new IllegalArgumentException("DonneesAnnuelle: The average price is invalid");
+        if (LePrixM2Moyen < 0) throw new IllegalArgumentException("DonneesAnnuelle: The average price per square meter is invalid");
+        if (LaSurfaceMoy < 0) throw new IllegalArgumentException("DonneesAnnuelle: The average surface area is invalid");
+        if (depenses < 0) throw new IllegalArgumentException("DonneesAnnuelle: The total cultural expenses are invalid");
+        if (budget < 0) throw new IllegalArgumentException("DonneesAnnuelle: The total budget is invalid");
+        if (pop < 0) throw new IllegalArgumentException("DonneesAnnuelle: The population is invalid");
+        if (commune == null) throw new IllegalArgumentException("DonneesAnnuelle: The commune is null");
+        if (an == null) throw new IllegalArgumentException("DonneesAnnuelle: The year is null");
+
+        this.nbMaison = maison;
+        this.nbAppart = appart;
+        this.prixMoyen = LePrixMoyen;
+        this.prixM2Moyen = LePrixM2Moyen;
+        this.surfaceMoy = LaSurfaceMoy;
+        this.depCulturellesTotales = depenses;
+        this.budgetTotal = budget;
+        this.population = pop;
+        this.laCommune = commune;
+        this.lAnnee = an;
     }
 
-    /**
-     * Constructeur de la classe DonneeAnnuelle
-     * 
-     * @param maison        - le nombre de maison par commune
-     * @param appart        - le nombre d'appartement par commune
-     * @param LePrixMoyen   - prix moyen par commune
-     * @param LePrixM2Moyen - le prix au m2 moyen par commune
-     * @param LaSurfaceMoy  - La surface moyenne d'une commune
-     * @param depenses      - Les depenses culturelles totales d'une commune
-     * @param budget        - Budget total pour une commune
-     * @param pop           - Population d'une commune
-     * @throws IllegalArgumentException si l'année ou le taux d'inflation est
-     *                                  incorrect
-     */
-    public DonneesAnnuelle(Commune commune, Annee an, int maison, int appart, float LePrixMoyen, float LePrixM2Moyen, float LaSurfaceMoy,
-            float depenses, float budget, float pop) {
-
-        if (maison >= 0 && appart >= 0 && LePrixMoyen >= 0 && LePrixM2Moyen >= 0 && LaSurfaceMoy >= 0 && depenses >= 0
-                && budget >= 0 && pop >= 0 && commune != null && an != null) {
-
-            this.nbMaison = maison;
-            this.nbAppart = appart;
-            this.prixMoyen = LePrixMoyen;
-            this.prixM2Moyen = LePrixM2Moyen;
-            this.surfaceMoy = LaSurfaceMoy;
-            this.depCulturellesTotales = depenses;
-            this.budgetTotal = budget;
-            this.population = pop;
-            this.laCommune = commune;
-            this.lAnnee = an;
-
-        } else {
-            throw new IllegalArgumentException("DonneAnnuelle : un ou plusieurs paramètres sont invalides");
-        }
-    }
+    //============================================ Methods ============================================//
 
     /**
-     * Méthode pour calculer la densité de population par rapport à la surface
-     * moyenne de la commune
+     * Calculates the population density relative to the average surface area of the commune.
      * 
-     * @return la densité de population (nombre d'habitants par unité de surface)
-     * @throws IllegalArgumentException si la surface moyenne est <= 0
+     * @return the population density (number of inhabitants per unit area)
      */
     public float calculerDensitePopulation() {
-        if (this.surfaceMoy <= 0) {
-            throw new IllegalArgumentException(
-                    "La surface moyenne doit être supérieure à zéro pour calculer la densité de population.");
-        }
         return this.population / this.surfaceMoy;
     }
 
     /**
-     * Calcule le prix total des biens immobiliers dans la commune
+     * Calculates the total price of real estate in the commune.
      * 
-     * @return le prix total des biens immobiliers
+     * @return the total price of real estate
      */
     public float calculerPrixTotalBiensImmobiliers() {
         return (this.nbMaison * this.prixMoyen) + (this.nbAppart * this.prixMoyen);
     }
 
     /**
-     * Calcule le prix moyen par mètre carré des biens immobiliers dans la commune
+     * Calculates the ratio of cultural expenses per inhabitant.
      * 
-     * @return le prix moyen par mètre carré
-     */
-    public float calculerPrixMoyenParM2() {
-        return this.prixMoyen / this.prixM2Moyen;
-    }
-
-    /**
-     * Calcule le ratio des dépenses culturelles par habitant
-     * 
-     * @return le ratio des dépenses culturelles par habitant
+     * @return the ratio of cultural expenses per inhabitant
      */
     public float calculerRatioDepensesCulturellesParHabitant() {
         return this.depCulturellesTotales / this.population;
     }
 
     /**
-     * Vérifie si le budget de la commune est équilibré
+     * Checks if the commune's budget is balanced.
      * 
-     * @return true si le budget est équilibré, false sinon
+     * @return true if the budget is balanced, false otherwise
      */
     public boolean estBudgetEquilibre() {
         return this.budgetTotal >= this.calculerPrixTotalBiensImmobiliers() + this.depCulturellesTotales;
     }
 
     /**
-     * Compare deux jeux de données annuelles pour vérifier s'ils sont identiques
-     * 
-     * @param autre - l'autre jeu de données annuelles à comparer
-     * @return true si les jeux de données sont identiques, false sinon
+     * Calculates various statistics for a commune.
+     *
+     * @return a string containing the statistics
      */
-    public boolean estIdentique(DonneesAnnuelle autre) {
-        return this.nbMaison == autre.nbMaison &&
-                this.nbAppart == autre.nbAppart &&
-                this.prixMoyen == autre.prixMoyen &&
-                this.prixM2Moyen == autre.prixM2Moyen &&
-                this.surfaceMoy == autre.surfaceMoy &&
-                this.depCulturellesTotales == autre.depCulturellesTotales &&
-                this.budgetTotal == autre.budgetTotal &&
-                this.population == autre.population;
+    public String calculerStatistiques() {
+        float densitePopulation = calculerDensitePopulation();
+        float prixTotalBiens = calculerPrixTotalBiensImmobiliers();
+        float ratioDepensesCulturellesParHabitant = calculerRatioDepensesCulturellesParHabitant();
+        String budgetEquilibre = this.estBudgetEquilibre() ? "Le budget de la commune est équilibré." : "Le budget de la commune n'est pas équilibré.";
+        
+        return "Densité de population: " + densitePopulation + "\n" +
+               "Prix total des biens immobiliers: " + prixTotalBiens + "\n" +
+               "Ratio des depenses culturelles par habitant: " + ratioDepensesCulturellesParHabitant + "\n" +
+               budgetEquilibre;
     }
 
     /**
-     * Obtient le nombre de maison
+     * Generates a report based on the annual data and calculated statistics.
+     *
+     * @return a string representing the report
+     */
+    public String genererRapport() {
+        String statistiques = calculerStatistiques();
+        return "\nRapport Annuel pour la Commune de " + laCommune.getNomCommune() + " (" + lAnnee.getAnnee() + ")\n" +
+               "-------------------------------------------------\n" +
+               toString() + 
+               "\nStatistiques:\n" + statistiques;
+    }
+
+    //============================================ Getters and Setters ============================================//
+
+    /**
+     * Gets the number of houses.
      * 
-     * @return le nombre de maison
+     * @return the number of houses
      */
     public int getNbMaison() {
         return this.nbMaison;
     }
 
     /**
-     * Obtient le nombre d'appartement
+     * Gets the number of apartments.
      * 
-     * @return le nombre d'appartement
+     * @return the number of apartments
      */
     public int getNbAppart() {
         return this.nbAppart;
     }
 
     /**
-     * Obtient le prix moyen
+     * Gets the average price.
      * 
-     * @return le prix moyen
+     * @return the average price
      */
     public float getPrixMoyen() {
         return this.prixMoyen;
     }
 
     /**
-     * Obtient le prix au m2 moyen
+     * Gets the average price per square meter.
      * 
-     * @return le prix au m2 moyen
+     * @return the average price per square meter
      */
     public float getPrixM2Moyen() {
         return this.prixM2Moyen;
     }
 
     /**
-     * Obtient la surface moyenne
+     * Gets the average surface area.
      * 
-     * @return la surface moyenne
+     * @return the average surface area
      */
     public float getSurfaceMoy() {
         return this.surfaceMoy;
     }
 
     /**
-     * Obtient les depenses culturelles totales
+     * Gets the total cultural expenses.
      * 
-     * @return les depenses culturelles totales
+     * @return the total cultural expenses
      */
     public float getDepCulturellesTotales() {
         return this.depCulturellesTotales;
     }
 
     /**
-     * Obtient le budget total
+     * Gets the total budget.
      * 
-     * @return le budget total
+     * @return the total budget
      */
     public float getBudgetTotal() {
         return this.budgetTotal;
     }
 
     /**
-     * Obtient la population
+     * Gets the population.
      * 
-     * @return la population
+     * @return the population
      */
     public float getPopulation() {
         return this.population;
     }
 
+    /**
+     * Gets the commune.
+     * 
+     * @return the commune
+     */
     public Commune getLaCommune() {
         return this.laCommune;
     }
 
+    /**
+     * Gets the year.
+     * 
+     * @return the year
+     */
     public Annee getLAnnee() {
         return this.lAnnee;
     }
+
     /**
-     * Définit le nombre de maisons.
+     * Sets the number of houses.
      * 
-     * @param maison nombre de maison
+     * @param maison the number of houses
+     * @throws IllegalArgumentException if the number of houses is less than 0
      */
-    public void setNbMaison(int maison) {
+    public void setNbMaison(int maison) throws IllegalArgumentException {
+        if (maison < 0) {
+            throw new IllegalArgumentException("setNbMaison: The number of houses is invalid");
+        }
         this.nbMaison = maison;
     }
 
     /**
-     * Définit le nombre d'appartement.
+     * Sets the number of apartments.
      * 
-     * @param appart nombre d'appartement
+     * @param appart the number of apartments
+     * @throws IllegalArgumentException if the number of apartments is less than 0
      */
-    public void setNbAppart(int appart) {
+    public void setNbAppart(int appart) throws IllegalArgumentException {
+        if (appart < 0) {
+            throw new IllegalArgumentException("setNbAppart: The number of apartments is invalid");
+        }
         this.nbAppart = appart;
     }
 
     /**
-     * Définit le prix moyen
+     * Sets the average price.
      * 
-     * @param LePrixMoyen le prix moyen
+     * @param LePrixMoyen the average price
+     * @throws IllegalArgumentException if the average price is less than 0
      */
-    public void setPrixMoyen(float LePrixMoyen) {
+    public void setPrixMoyen(float LePrixMoyen) throws IllegalArgumentException {
+        if (LePrixMoyen < 0) {
+            throw new IllegalArgumentException("setPrixMoyen: The average price is invalid");
+        }
         this.prixMoyen = LePrixMoyen;
     }
 
     /**
-     * Définit le prix au m2 moyen
+     * Sets the average price per square meter.
      * 
-     * @param LePrixM2Moyen le prix au m2 moyen
+     * @param LePrixM2Moyen the average price per square meter
+     * @throws IllegalArgumentException if the average price per square meter is less than 0
      */
-    public void setPrixM2Moyen(float LePrixM2Moyen) {
+    public void setPrixM2Moyen(float LePrixM2Moyen) throws IllegalArgumentException {
+        if (LePrixM2Moyen < 0) {
+            throw new IllegalArgumentException("setPrixM2Moyen: The average price per square meter is invalid");
+        }
         this.prixM2Moyen = LePrixM2Moyen;
     }
 
     /**
-     * Définit la surface
+     * Sets the average surface area.
      * 
-     * @param surface la surface
+     * @param surface the average surface area
+     * @throws IllegalArgumentException if the average surface area is less than 0
      */
-    public void setSurfaceMoy(float surface) {
+    public void setSurfaceMoy(float surface) throws IllegalArgumentException {
+        if (surface < 0) {
+            throw new IllegalArgumentException("setSurfaceMoy: The average surface area is invalid");
+        }
         this.surfaceMoy = surface;
     }
 
     /**
-     * Définit les depenses de la commune
+     * Sets the total cultural expenses.
      * 
-     * @param depenses les dépenses de la commune
+     * @param depenses the total cultural expenses
+     * @throws IllegalArgumentException if the total cultural expenses are less than 0
      */
-    public void setDepCulturellesTotales(float depenses) {
+    public void setDepCulturellesTotales(float depenses) throws IllegalArgumentException {
+        if (depenses < 0) {
+            throw new IllegalArgumentException("setDepCulturellesTotales: The total cultural expenses are invalid");
+        }
         this.depCulturellesTotales = depenses;
     }
 
     /**
-     * Définit le budget de la commune
+     * Sets the total budget.
      * 
-     * @param budget le budget
+     * @param budget the total budget
+     * @throws IllegalArgumentException if the total budget is less than 0
      */
-    public void setBudgetTotal(float budget) {
+    public void setBudgetTotal(float budget) throws IllegalArgumentException {
+        if (budget < 0) {
+            throw new IllegalArgumentException("setBudgetTotal: The total budget is invalid");
+        }
         this.budgetTotal = budget;
     }
 
     /**
-     * Définit la population de la commune
+     * Sets the population of the commune.
      * 
-     * @param pop la population
+     * @param pop the population
+     * @throws IllegalArgumentException if the population is less than 0
      */
-    public void setPopulation(float pop) {
+    public void setPopulation(float pop) throws IllegalArgumentException {
+        if (pop < 0) {
+            throw new IllegalArgumentException("setPopulation: The population is invalid");
+        }
         this.population = pop;
     }
 
-    public void setLaCommune(Commune comm) {
+    /**
+     * Sets the commune for the data.
+     * 
+     * @param comm the commune
+     * @throws IllegalArgumentException if the commune is null
+     */
+    public void setLaCommune(Commune comm) throws IllegalArgumentException {
+        if (comm == null) {
+            throw new IllegalArgumentException("setLaCommune: The commune is null");
+        }
         this.laCommune = comm;
     }
 
-    public void setLAnnee(Annee annee) {
+    /**
+     * Sets the year for the data.
+     * 
+     * @param annee the year
+     * @throws IllegalArgumentException if the year is null
+     */
+    public void setLAnnee(Annee annee) throws IllegalArgumentException {
+        if (annee == null) {
+            throw new IllegalArgumentException("setLAnnee: The year is null");
+        }
         this.lAnnee = annee;
     }
 
     /**
-     * Retourne une représentation sous forme de chaîne de caractères des données
-     * annuelles
+     * Returns a string representation of the annual data.
      * 
-     * @return une représentation sous forme de chaîne de caractères des données
-     *         annuelles
+     * @return a string representation of the annual data
      */
     public String toString() {
 
-        String nbMaison = "Nombre de maison : " + this.nbMaison;
-        String nbAppart = "Nombre d'appartement : " + this.nbAppart;
-        String prixMoyen = "Prix moyen : " + this.prixMoyen;
-        String prixM2Moyen = "Prix m2 moyen : " + this.prixM2Moyen;
-        String surfaceMoy = "Surface moyenne : " + this.surfaceMoy;
-        String depCulturellesTotales = "Depenses culturelles totales : " + this.depCulturellesTotales;
-        String budgetTotal = "Budget total : " + this.budgetTotal;
-        String population = "Population : " + this.population;
+        String commune = "" + this.laCommune;
+        String lAnnee = "" + this.lAnnee;
+        String nbMaison = "Nombre de maison: " + this.nbMaison;
+        String nbAppart = "Nombre d'appartement: " + this.nbAppart;
+        String prixMoyen = "Prix moyen: " + this.prixMoyen;
+        String prixM2Moyen = "Prix m2 moyen: " + this.prixM2Moyen;
+        String surfaceMoy = "Surface moyenne: " + this.surfaceMoy;
+        String depCulturellesTotales = "Depenses culturelles totales: " + this.depCulturellesTotales;
+        String budgetTotal = "Budget total: " + this.budgetTotal;
+        String population = "Population: " + this.population;
 
-        return nbMaison + "\n" + nbAppart + "\n" + prixMoyen + "\n" + prixM2Moyen + "\n" + surfaceMoy + "\n"
-                + depCulturellesTotales + "\n" + budgetTotal + "\n" + population;
+        return commune + lAnnee + nbMaison + "\n" + nbAppart + "\n" + prixMoyen + "\n" + prixM2Moyen + "\n" + surfaceMoy + "\n"
+                + depCulturellesTotales + "\n" + budgetTotal + "\n" + population +"\n";
     }
 }

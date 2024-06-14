@@ -3,28 +3,34 @@ package model.data;
 import java.util.ArrayList;
 
 /**
- * Représente un aéroport avec un nom et une adresse.
+ * Represents an airport with a name and an address.
  */
 public class Aeroport {
 
-    private String nom; // nom de l'aéroport
-    private String adresse; // adresse de l'aéroport
-    private Departement leDepartement; // departement de l'aéoroport
-
     /**
-     * Constructeur par défaut qui initialise l'aéroport avec un nom et une adresse vides.
+     * The name of the airport.
      */
-    public Aeroport() {
-        this.nom = "";
-        this.adresse = "";
-    }
+    private String nom;
 
     /**
-     * Constructeur avec paramètres qui initialise l'aéroport avec le nom et l'adresse donnés.
+     * The address of the airport.
+     */
+    private String adresse;
+
+    /**
+     * The department where the airport is located.
+     */
+    private Departement leDepartement;
+
+    //============================================ Constructor ============================================//
+
+    /**
+     * Constructor with parameters that initializes the airport with the given name and address.
      *
-     * @param nom le nom de l'aéroport
-     * @param adresse l'adresse de l'aéroport
-     * @throws IllegalArgumentException si le nom ou l'adresse est null
+     * @param nom the name of the airport
+     * @param adresse the address of the airport
+     * @param leDepartement the department where the airport is located
+     * @throws IllegalArgumentException if the name or address is null
      */
     public Aeroport(String nom, String adresse, Departement leDepartement) throws IllegalArgumentException {
         if (nom != null) {
@@ -33,74 +39,25 @@ public class Aeroport {
                 this.adresse = adresse;
                 this.leDepartement = leDepartement;
             } else {
-                throw new IllegalArgumentException("L'adresse de l'aéroport est null");
+                throw new IllegalArgumentException("Aeroport constructor: The address of the airport is null");
             }
         } else {
-            throw new IllegalArgumentException("Le nom de l'aéroport est null");
+            throw new IllegalArgumentException("Aeroport constructor: The name of the airport is null");
         }
     }
 
-    /**
-     * Obtient le nom de l'aéroport.
-     *
-     * @return le nom de l'aéroport
-     */
-    public String getNom() {
-        return this.nom;
-    }
+    //============================================ Methods ============================================//
 
     /**
-     * Obtient l'adresse de l'aéroport.
-     *
-     * @return l'adresse de l'aéroport
+     * Method that returns the commune to which the airport belongs based on its address.
+     * @param communes the list of available communes
+     * @return the commune to which the airport belongs, or null if no match is found
+     * @throws IllegalArgumentException if the list of communes is null
      */
-    public String getAdresse() {
-        return this.adresse;
-    }
-
-    public Departement getLeDepartement() {
-        return this.leDepartement;
-    }
-
-    /**
-     * Définit le nom de l'aéroport.
-     *
-     * @param nom le nouveau nom de l'aéroport
-     */
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    /**
-     * Définit l'adresse de l'aéroport.
-     *
-     * @param adresse la nouvelle adresse de l'aéroport
-     */
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public void setLeDepartement(Departement leDepartement) {
-    this.leDepartement = leDepartement;
-    }
-
-    /**
-     * Retourne une représentation sous forme de chaîne de caractères de l'aéroport.
-     * @return une représentation sous forme de chaîne de caractères de l'aéroport
-     */
-    public String toString() {
-
-        String nom = "Nom : " + this.nom;
-        String adresse = "Adresse : " + this.adresse;
-        return nom + "\n" + adresse + "\n";
-    }
-
-    /**
-     * Méthode qui retourne la commune à laquelle appartient l'aéroport en fonction de son adresse.
-     * @param communes la liste des communes disponibles
-     * @return la commune à laquelle appartient l'aéroport, ou null si aucune correspondance n'est trouvée
-     */
-    public Commune findCommune(ArrayList<Commune> communes) {
+    public Commune findCommune(ArrayList<Commune> communes) throws IllegalArgumentException {
+        if (communes == null) {
+            throw new IllegalArgumentException("findCommune: The list of communes is null");
+        }
         Commune res = null;
         for (Commune commune : communes) {
             if (this.adresse.contains(commune.getNomCommune())) {
@@ -108,5 +65,84 @@ public class Aeroport {
             }
         }
         return res;
+    }
+
+    //============================================ Getters and Setters ============================================//
+
+    /**
+     * Gets the name of the airport.
+     *
+     * @return the name of the airport
+     */
+    public String getNom() {
+        return this.nom;
+    }
+
+    /**
+     * Gets the address of the airport.
+     *
+     * @return the address of the airport
+     */
+    public String getAdresse() {
+        return this.adresse;
+    }
+
+    /**
+     * Gets the department where the airport is located.
+     *
+     * @return the department where the airport is located
+     */
+    public Departement getLeDepartement() {
+        return this.leDepartement;
+    }
+
+    /**
+     * Sets the name of the airport.
+     *
+     * @param nom the new name of the airport
+     * @throws IllegalArgumentException if the name is null
+     */
+    public void setNom(String nom) throws IllegalArgumentException {
+        if (nom == null) {
+            throw new IllegalArgumentException("setNom: The name of the airport is null");
+        }
+        this.nom = nom;
+    }
+
+    /**
+     * Sets the address of the airport.
+     *
+     * @param adresse the new address of the airport
+     * @throws IllegalArgumentException if the address is null
+     */
+    public void setAdresse(String adresse) throws IllegalArgumentException {
+        if (adresse == null) {
+            throw new IllegalArgumentException("setAdresse: The address of the airport is null");
+        }
+        this.adresse = adresse;
+    }
+
+    /**
+     * Sets the department where the airport is located.
+     *
+     * @param leDepartement the new department where the airport is located
+     * @throws IllegalArgumentException if the department is null
+     */
+    public void setLeDepartement(Departement leDepartement) throws IllegalArgumentException {
+        if (leDepartement == null) {
+            throw new IllegalArgumentException("setLeDepartement: The department is null");
+        }
+        this.leDepartement = leDepartement;
+    }
+
+    /**
+     * Returns a string representation of the airport.
+     *
+     * @return a string representation of the airport
+     */
+    public String toString() {
+        String nom = "Name: " + this.nom;
+        String adresse = "Address: " + this.adresse;
+        return nom + "\n" + adresse + "\n";
     }
 }

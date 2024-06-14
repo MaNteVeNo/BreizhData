@@ -3,45 +3,39 @@ package model.data;
 import java.util.ArrayList;
 
 /**
- * Represente un departement avec son id, son nom et son investissement culturel
- * en 2019
+ * Represents a department with its id, name, and cultural investment in 2019.
  */
 public class Departement {
 
     /**
-     * C'est l'id pour chaque departement
+     * The id of the department.
      */
     private int idDep;
+
     /**
-     * Le nom de chaque département
+     * The name of the department.
      */
     private String nomDep;
+
     /**
-     * L'investissement culturel pour l'année 2019
+     * The cultural investment for the year 2019.
      */
     private float invesCulturel2019;
+
     /**
-     * ArrayList des aéroports
+     * List of airports in the department.
      */
     private ArrayList<Aeroport> lesAeroports;
 
-    /**
-     * Constructeur vide du Departement
-     */
-    public Departement() {
-        this.idDep = 0;
-        this.nomDep = "";
-        this.invesCulturel2019 = 0;
-        this.lesAeroports = new ArrayList<>();
-    }
+    //============================================ Constructor ============================================//
 
     /**
-     * Constructeur du Departement
-     * 
-     * @param id    - L'id de chaque departement
-     * @param nom   - La nom de chaque département
-     * @param inves - Investissement culturel pour l'année 2019
-     * @throws IllegalArgumentException - Si le nom ou l'adresse est null
+     * Constructor for the Department.
+     *
+     * @param id    the id of the department
+     * @param nom   the name of the department
+     * @param inves the cultural investment for the year 2019
+     * @throws IllegalArgumentException if the id is less than 0, or if the name or investment is null or incorrect
      */
     public Departement(int id, String nom, float inves) throws IllegalArgumentException {
         if (id >= 0) {
@@ -52,59 +46,129 @@ public class Departement {
                     this.invesCulturel2019 = inves;
                     this.lesAeroports = new ArrayList<>();
                 } else {
-                    throw new IllegalArgumentException("Departement : L'investissement est incorrect !!!");
+                    throw new IllegalArgumentException("Departement constructor: The investment is incorrect");
                 }
             } else {
-                throw new IllegalArgumentException("Departement : Le nom du département est null !!!");
+                throw new IllegalArgumentException("Departement constructor: The name of the department is null");
             }
         } else {
-            throw new IllegalArgumentException("Departement : L'identifiant du département est incorrect !!!");
+            throw new IllegalArgumentException("Departement constructor: The id of the department is incorrect");
         }
     }
-    
-    public int getIdDep(){
+
+    //============================================ Methods ============================================//
+
+    /**
+     * Adds an airport to the department.
+     *
+     * @param aeroport the airport to add
+     * @throws IllegalArgumentException if the airport is null
+     */
+    public void add(Aeroport aeroport) throws IllegalArgumentException {
+        if (aeroport == null) {
+            throw new IllegalArgumentException("add: The airport is null");
+        }
+        this.lesAeroports.add(aeroport);
+    }
+
+    /**
+     * Compares the cultural investment of this department in 2019 with another department.
+     *
+     * @param autreDep the other department to compare
+     * @return 1 if this department has a higher investment, 0 if equal, -1 if lower
+     * @throws IllegalArgumentException if the other department is null
+     */
+    public int compareInves2019(Departement autreDep) throws IllegalArgumentException {
+        if (autreDep == null) {
+            throw new IllegalArgumentException("compareInves2019: The other department is null");
+        }
+        int res;
+        if (this.invesCulturel2019 > autreDep.getInvesCulturel2019()) res = 1;
+        else if (this.invesCulturel2019 == autreDep.getInvesCulturel2019()) res = 0;
+        else res = -1;
+        return res;
+    }
+
+    //============================================ Getters and Setters ============================================//
+
+    /**
+     * Gets the id of the department.
+     *
+     * @return the id of the department
+     */
+    public int getIdDep() {
         return this.idDep;
     }
 
-    public String getNomDep(){
+    /**
+     * Gets the name of the department.
+     *
+     * @return the name of the department
+     */
+    public String getNomDep() {
         return this.nomDep;
     }
 
+    /**
+     * Gets the cultural investment for the year 2019.
+     *
+     * @return the cultural investment for the year 2019
+     */
     public float getInvesCulturel2019() {
         return this.invesCulturel2019;
     }
 
-    public void setIdDep(int dep){
+    /**
+     * Sets the id of the department.
+     *
+     * @param dep the new id of the department
+     * @throws IllegalArgumentException if the id is less than 0
+     */
+    public void setIdDep(int dep) throws IllegalArgumentException {
+        if (dep < 0) {
+            throw new IllegalArgumentException("setIdDep: The id of the department is incorrect");
+        }
         this.idDep = dep;
     }
 
-    public void setNomDep(String nom){
+    /**
+     * Sets the name of the department.
+     *
+     * @param nom the new name of the department
+     * @throws IllegalArgumentException if the name is null
+     */
+    public void setNomDep(String nom) throws IllegalArgumentException {
+        if (nom == null) {
+            throw new IllegalArgumentException("setNomDep: The name of the department is null");
+        }
         this.nomDep = nom;
     }
 
-    public void setInvesCulturel2019(float inves){
+    /**
+     * Sets the cultural investment for the year 2019.
+     *
+     * @param inves the new cultural investment
+     * @throws IllegalArgumentException if the investment is less than 0
+     */
+    public void setInvesCulturel2019(float inves) throws IllegalArgumentException {
+        if (inves < 0) {
+            throw new IllegalArgumentException("setInvesCulturel2019: The cultural investment is incorrect");
+        }
         this.invesCulturel2019 = inves;
     }
 
-    public String toString(){
-        
-        String idDep = "idDep : " + this.idDep;
-        String nomDep = "nomDep : " + this.nomDep;
-        String invesCulturel2019 = "investCulturel2019 : " + this.invesCulturel2019;
-        String aeroports = "Aéroports : " + this.lesAeroports.toString();
+    /**
+     * Returns a string representation of the department.
+     *
+     * @return a string representation of the department
+     */
+    public String toString() {
+
+        String idDep = "idDep: " + this.idDep;
+        String nomDep = "nomDep: " + this.nomDep;
+        String invesCulturel2019 = "investCulturel2019: " + this.invesCulturel2019;
+        String aeroports = "Airports: " + this.lesAeroports.toString();
 
         return idDep + "\n" + nomDep + "\n" + invesCulturel2019 + "\n" + aeroports + "\n";
-    }
-
-    public void add(Aeroport aeroport) {
-        this.lesAeroports.add(aeroport);
-    }
-
-    public ArrayList<String> listerAeroport() {
-        ArrayList<String> nomsAeroport = new ArrayList<>();
-        for (Aeroport aeroport : this.lesAeroports) {
-            nomsAeroport.add(aeroport.getNom());
-        }
-        return nomsAeroport;
     }
 }

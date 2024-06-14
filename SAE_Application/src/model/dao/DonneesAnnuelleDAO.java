@@ -89,7 +89,7 @@ public class DonneesAnnuelleDAO extends DAO<DonneesAnnuelle> {
 
                 Commune comm = communeDAO.findComm(idComm);
                 Annee an = anneeDAO.findAnnee(annee);
-                donneesAnnuelles.add(new DonneesAnnuelle(comm, an, nbMaison, nbAppart, prixMoyen, prixM2Moyen, surfaceMoy, depenses, budget, population));
+                donneesAnnuelles.add(new DonneesAnnuelle(an, comm, nbMaison, nbAppart, prixMoyen, prixM2Moyen, surfaceMoy, depenses, budget, population));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

@@ -38,7 +38,7 @@ public class TestAeroport {
         
         // Test constructeur par défaut
         try {
-            Aeroport a = new Aeroport();
+            Aeroport a = new Aeroport(null, null, null);
             if (!a.getNom().isEmpty() || !a.getAdresse().isEmpty()) {
                 printError("\tECHEC : constructeur par défaut");
             } else {
