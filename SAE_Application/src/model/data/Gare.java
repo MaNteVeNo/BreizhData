@@ -3,77 +3,80 @@ package model.data;
 import java.util.ArrayList;
 
 /**
- * Représente la gare par son code, son nom, et si c'est une gare de commerce ou
- * de voyageur.
+ * Represents a train station by its code, name, and whether it is a freight or passenger station.
  */
 public class Gare {
 
     /**
-     * Code de la gare.
+     * Code of the train station.
      */
     private int codeGare;
 
     /**
-     * Nom de la gare.
+     * Name of the train station.
      */
     private String nomGare;
 
     /**
-     * Indique si la gare est une gare de commerce.
+     * Indicates if the station is a freight station.
      */
     private boolean estFret;
 
     /**
-     * Indique si la gare est une gare de voyageur.
+     * Indicates if the station is a passenger station.
      */
     private boolean estVoyageur;
+
     /**
-     * Commune pour les gares
+     * The commune for the station.
      */
     private Commune laCommune;
 
-    /**
-     * Constructeur vide de la Gare.
-     */
-    public Gare() {
-        this.codeGare = 0;
-        this.nomGare = "";
-        this.estFret = false;
-        this.estVoyageur = false;
-    }
+    //============================================ Constructor ============================================//
 
     /**
-     * Constructeur de la Gare.
+     * Constructor for the Gare.
      *
-     * @param code     le code donné pour une gare
-     * @param nom      le nom de la gare
-     * @param fret     si la gare est une gare de commerce
-     * @param voyageur si la gare est une gare de voyageur
-     * @throws IllegalArgumentException si le nom est null
+     * @param code      the code for the station
+     * @param nom       the name of the station
+     * @param fret      whether the station is a freight station
+     * @param voyageur  whether the station is a passenger station
+     * @param commune   the commune for the station
+     * @throws IllegalArgumentException if the code is less than 0 or if the name or commune is null
      */
-    public Gare(int code, String nom, boolean fret, boolean voyageur, Commune commune) {
+    public Gare(int code, String nom, boolean fret, boolean voyageur, Commune commune) throws IllegalArgumentException {
         if (code >= 0) {
             if (nom != null) {
-                this.codeGare = code;
-                this.nomGare = nom;
-                this.estFret = fret;
-                this.estVoyageur = voyageur;
-                this.laCommune = commune;
+                if (commune != null) {
+                    this.codeGare = code;
+                    this.nomGare = nom;
+                    this.estFret = fret;
+                    this.estVoyageur = voyageur;
+                    this.laCommune = commune;
+                } else {
+                    throw new IllegalArgumentException("Gare constructor: The commune is null");
+                }
             } else {
-                throw new IllegalArgumentException("Le nom de la Gare est NULL !!!");
+                throw new IllegalArgumentException("Gare constructor: The name of the station is null");
             }
         } else {
-            throw new IllegalArgumentException("Le code de la gare est incorrect !!!");
+            throw new IllegalArgumentException("Gare constructor: The code of the station is incorrect");
         }
     }
 
+    //============================================ Methods ============================================//
+
     /**
-     * Compte le nombre de gares dans une liste ayant les mêmes caractéristiques de commerce et de voyageur.
+     * Counts the number of stations in a list that have the same freight and passenger characteristics.
      *
-     * @param gares la liste des gares à analyser
-     * @return le nombre de gares ayant les mêmes caractéristiques
+     * @param gares the list of stations to analyze
+     * @return the number of stations with the same characteristics
+     * @throws IllegalArgumentException if the list of stations is null
      */
-    public int compterGaresSimilaires(ArrayList<Gare> gares) {
+    public int compterGaresSimilaires(ArrayList<Gare> gares) throws IllegalArgumentException {
+        if (gares == null) {
+            throw new IllegalArgumentException("compterGaresSimilaires: The list of stations is null");
+        }
         int cpt = 0;
         for (Gare gare : gares) {
             if (gare.getEstFret() == this.estFret && gare.getEstVoyageur() == this.estVoyageur) {
@@ -83,100 +86,122 @@ public class Gare {
         return cpt;
     }
 
+    //============================================ Getters and Setters ============================================//
+
     /**
-     * Obtient le code de la gare.
+     * Gets the code of the station.
      *
-     * @return le code de la gare
+     * @return the code of the station
      */
     public int getCodeGare() {
         return this.codeGare;
     }
 
     /**
-     * Obtient le nom de la gare.
+     * Gets the name of the station.
      *
-     * @return le nom de la gare
+     * @return the name of the station
      */
     public String getNomGare() {
         return this.nomGare;
     }
 
     /**
-     * Indique si la gare est une gare de commerce.
+     * Indicates if the station is a freight station.
      *
-     * @return true si la gare est une gare de commerce, sinon false
+     * @return true if the station is a freight station, false otherwise
      */
     public boolean getEstFret() {
         return this.estFret;
     }
 
     /**
-     * Indique si la gare est une gare de voyageur.
+     * Indicates if the station is a passenger station.
      *
-     * @return true si la gare est une gare de voyageur, sinon false
+     * @return true if the station is a passenger station, false otherwise
      */
     public boolean getEstVoyageur() {
         return this.estVoyageur;
     }
 
+    /**
+     * Gets the commune of the station.
+     *
+     * @return the commune of the station
+     */
     public Commune getLaCommune() {
         return this.laCommune;
     }
 
     /**
-     * Définit le code de la gare.
+     * Sets the code of the station.
      *
-     * @param code le nouveau code de la gare
+     * @param code the new code of the station
+     * @throws IllegalArgumentException if the code is less than 0
      */
-    public void setCodeGare(int code) {
+    public void setCodeGare(int code) throws IllegalArgumentException {
+        if (code < 0) {
+            throw new IllegalArgumentException("setCodeGare: The code of the station is incorrect");
+        }
         this.codeGare = code;
     }
 
     /**
-     * Définit le nom de la gare.
+     * Sets the name of the station.
      *
-     * @param nom le nouveau nom de la gare
+     * @param nom the new name of the station
+     * @throws IllegalArgumentException if the name is null
      */
-    public void setNomGare(String nom) {
+    public void setNomGare(String nom) throws IllegalArgumentException {
+        if (nom == null) {
+            throw new IllegalArgumentException("setNomGare: The name of the station is null");
+        }
         this.nomGare = nom;
     }
 
     /**
-     * Définit si la gare est une gare de commerce.
+     * Sets whether the station is a freight station.
      *
-     * @param estFret le nouvel état de la gare de commerce
+     * @param estFret the new freight status of the station
      */
     public void setEstFret(boolean estFret) {
         this.estFret = estFret;
     }
 
     /**
-     * Définit si la gare est une gare de voyageur.
+     * Sets whether the station is a passenger station.
      *
-     * @param estVoyageur le nouvel état de la gare de voyageur
+     * @param estVoyageur the new passenger status of the station
      */
     public void setEstVoyageur(boolean estVoyageur) {
         this.estVoyageur = estVoyageur;
     }
 
-    public void setLaCommune(Commune laCommune) {
+    /**
+     * Sets the commune of the station.
+     *
+     * @param laCommune the new commune of the station
+     * @throws IllegalArgumentException if the commune is null
+     */
+    public void setLaCommune(Commune laCommune) throws IllegalArgumentException {
+        if (laCommune == null) {
+            throw new IllegalArgumentException("setLaCommune: The commune is null");
+        }
         this.laCommune = laCommune;
     }
 
     /**
-     * Retourne une représentation sous forme de chaîne de caractères de la gare.
+     * Returns a string representation of the station.
      *
-     * @return une représentation sous forme de chaîne de caractères de la gare
+     * @return a string representation of the station
      */
     public String toString() {
 
-        String code = "Le code de la gare est : " + this.codeGare;
-        String nom = "Le nom de la gare est : " + this.nomGare;
-        String estFret = "L'état de estFret est : " + this.estFret;
-        String estVoyageur = "L'état de estVoyageur est : " + this.estVoyageur;
+        String code = "Le code de la gare est: " + this.codeGare;
+        String nom = "Le nom de la gare est: " + this.nomGare;
+        String estFret = "L'état de estFret est: " + this.estFret;
+        String estVoyageur = "L'état de estVoyageur est: " + this.estVoyageur;
 
         return code + "\n" + nom + "\n" + estFret + "\n" + estVoyageur;
     }
-
-    
 }
