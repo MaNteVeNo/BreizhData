@@ -27,6 +27,12 @@ public class Departement {
      */
     private ArrayList<Aeroport> lesAeroports;
 
+    /**
+     * List of the valid names of a department.
+     */
+    private final String[] lesDepsValides = {"MORBIHAN", "ILLE-ET-VILAINE", "COTES-D-ARMOR", "FINISTERE"};
+
+
     //============================================ Constructor ============================================//
 
     /**
@@ -38,13 +44,21 @@ public class Departement {
      * @throws IllegalArgumentException if the id is less than 0, or if the name or investment is null or incorrect
      */
     public Departement(int id, String nom, float inves) throws IllegalArgumentException {
+        boolean nomValide = false;
         if (id >= 0) {
             if (nom != null) {
                 if (inves >= 0) {
-                    this.idDep = id;
-                    this.nomDep = nom;
-                    this.invesCulturel2019 = inves;
-                    this.lesAeroports = new ArrayList<>();
+                    for (int i = 0; i<lesDepsValides.length; i++) {
+                        if ( nom.equals(lesDepsValides[i]) ) nomValide = true;
+                    }
+                    if(nomValide) {
+                        this.idDep = id;
+                        this.nomDep = nom;
+                        this.invesCulturel2019 = inves;
+                        this.lesAeroports = new ArrayList<>();
+                    } else {
+                        throw new IllegalArgumentException("Departement constructor : the name of the department is not a name of a Breton departement");
+                    }
                 } else {
                     throw new IllegalArgumentException("Departement constructor: The investment is incorrect");
                 }
@@ -89,6 +103,19 @@ public class Departement {
         return res;
     }
 
+        /**
+     * Returns the list of names of train stations.
+     * 
+     * @return a list of names of train stations
+     */
+    public ArrayList<String> listerAeroports() {
+        ArrayList<String> nomsAeroports= new ArrayList<>();
+        for (Aeroport aer : this.lesAeroports) {
+            nomsAeroports.add(aer.getNom());
+        }
+        return nomsAeroports;
+    }
+
     //============================================ Getters and Setters ============================================//
 
     /**
@@ -116,6 +143,15 @@ public class Departement {
      */
     public float getInvesCulturel2019() {
         return this.invesCulturel2019;
+    }
+    
+    /**
+     * Gets the list of airports
+     * 
+     * @return the list of airports
+     */
+    public ArrayList<Aeroport> getLesAeroports() {
+        return this.lesAeroports;
     }
 
     /**
