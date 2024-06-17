@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneController">
    <children>
       <SplitPane dividerPositions="0.23469387755102042" prefHeight="668.0" prefWidth="982.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -15,7 +15,7 @@
                   <AnchorPane layoutX="13.0" layoutY="221.0" prefHeight="200.0" prefWidth="200.0" />
                   <ImageView fitHeight="290.0" fitWidth="293.0" layoutX="93.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/logo.png" />
+                        <Image url="@image/logo.jpg" />
                      </image>
                   </ImageView>
                </children>
