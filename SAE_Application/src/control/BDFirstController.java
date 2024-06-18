@@ -78,7 +78,7 @@ public class BDFirstController {
     @FXML
     void clickMapAccueille(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/PageMap.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/PageMap.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -100,7 +100,7 @@ public class BDFirstController {
             );
 
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/PageConnexion.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/fxml/PageConnexion.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
@@ -120,7 +120,7 @@ public class BDFirstController {
     @FXML
     void clickOnProfilAcc(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/SceneAcceuille.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/SceneAcceuille.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -133,7 +133,7 @@ public class BDFirstController {
     @FXML
     void clickEnSavoirPlus(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/PageMap.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/PageMap.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -150,7 +150,7 @@ public class BDFirstController {
                 registeredUser.getPrenom().equals(prenomTextConnexion.getText()) &&
                 registeredUser.getNom().equals(nomTextConnexion.getText())) {
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/SceneAcceuille.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/fxml/SceneAcceuille.fxml"));
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(root);
                     stage.setScene(scene);
@@ -177,7 +177,7 @@ public class BDFirstController {
     @FXML
     void clickForCreateAccount(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/PageInscription.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/PageInscription.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
