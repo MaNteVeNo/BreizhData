@@ -3,7 +3,7 @@ package model.data;
 /**
  * Represents annual data for a commune.
  */
-public class DonneesAnnuelle {
+public class DonneesAnnuelles {
 
     /**
      * Number of houses in a commune.
@@ -72,18 +72,17 @@ public class DonneesAnnuelle {
      * @param pop            the population of the commune
      * @throws IllegalArgumentException if any of the parameters are invalid
      */
-    public DonneesAnnuelle(Annee an, Commune commune, int maison, int appart, float LePrixMoyen, float LePrixM2Moyen, float LaSurfaceMoy, float depenses, float budget, float pop) throws IllegalArgumentException {
+    public DonneesAnnuelles(Annee an, Commune commune, int maison, int appart, float LePrixMoyen, float LePrixM2Moyen, float LaSurfaceMoy, float depenses, float budget, float pop) throws IllegalArgumentException {
 
         if (maison < 0) throw new IllegalArgumentException("DonneesAnnuelle: The number of houses is invalid");
         if (appart < 0) throw new IllegalArgumentException("DonneesAnnuelle: The number of apartments is invalid");
         if (LePrixMoyen < 0) throw new IllegalArgumentException("DonneesAnnuelle: The average price is invalid");
         if (LePrixM2Moyen < 0) throw new IllegalArgumentException("DonneesAnnuelle: The average price per square meter is invalid");
         if (LaSurfaceMoy < 0) throw new IllegalArgumentException("DonneesAnnuelle: The average surface area is invalid");
-        if (depenses < 0) throw new IllegalArgumentException("DonneesAnnuelle: The total cultural expenses are invalid");
-        if (budget < 0) throw new IllegalArgumentException("DonneesAnnuelle: The total budget is invalid");
-        if (pop < 0) throw new IllegalArgumentException("DonneesAnnuelle: The population is invalid");
         if (commune == null) throw new IllegalArgumentException("DonneesAnnuelle: The commune is null");
         if (an == null) throw new IllegalArgumentException("DonneesAnnuelle: The year is null");
+
+        // Note that there are no exceptions for depenses, budget and pop, because in the database these attributes often have a value of -1.
 
         this.nbMaison = maison;
         this.nbAppart = appart;

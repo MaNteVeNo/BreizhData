@@ -30,7 +30,7 @@ public class Departement {
     /**
      * List of the valid names of a department.
      */
-    private final String[] lesDepsValides = {"MORBIHAN", "ILLE-ET-VILAINE", "COTES-D-ARMOR", "FINISTERE"};
+    private final String[] lesDepsValides = {"MORBIHAN", "ILLE-ET-VILAINE", "COTES-D'ARMOR", "FINISTERE"};
 
 
     //============================================ Constructor ============================================//

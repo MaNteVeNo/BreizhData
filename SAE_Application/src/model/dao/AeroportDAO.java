@@ -21,7 +21,7 @@ public class AeroportDAO extends DAO <Aeroport> {
 
     public int create(Aeroport aer) {
         this.aers.add(aer);
-        String query = "INSERT INTO aeroport(nom, adresse, leDepartement) VALUES ('" + aer.getNom() + "','" + aer.getAdresse() + "','" + aer.getLeDepartement() + " ')";
+        String query = "INSERT INTO aeroport(nom, adresse, leDepartement) VALUES ('" + aer.getNom() + "','" + aer.getAdresse() + "','" + aer.getLeDepartement().getIdDep() + " ')";
         try (Connection con = getConnection (); Statement st = con.createStatement ()) {
             return st.executeUpdate(query);
         } catch (SQLException ex) {
@@ -31,12 +31,13 @@ public class AeroportDAO extends DAO <Aeroport> {
     }
 
     public int update(Aeroport aer) {
-        String query = "UPDATE aeroport SET nom='" + aer.getNom() + "', PWD='" + aer.getAdresse() + "' WHERE nom='" + aer.getNom() + "'";
+        String query = "UPDATE aeroport SET nom='" + aer.getNom() + "' WHERE  adresse = '" + aer.getAdresse() + "'";
         try (Connection con = getConnection (); Statement st = con.createStatement ()) {
             for (int i = 0; i<this.aers.size(); i++ ){
-                if (aer.getNom().equals(this.aers.get(i).getNom()) ) {
+                if (aer.getAdresse().equals(this.aers.get(i).getAdresse()) ) {
                     this.aers.remove(i);
                     this.aers.add(aer);
+                    break;
                 }
             }
             return st.executeUpdate(query);
@@ -57,16 +58,21 @@ public class AeroportDAO extends DAO <Aeroport> {
         }
     }
 
+    public Aeroport findById(int id) {
+        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    }
+
     public List <Aeroport> findAll () {
-        
+        this.aers.clear();
         try (Connection con = getConnection (); Statement st = con.createStatement ()) {
             ResultSet rs = st.executeQuery("SELECT * FROM aeroport");
             while (rs.next()) {
+                
                 String nom = rs.getString("nom");
                 String adresse = rs.getString("adresse");
                 int departement = rs.getInt("leDepartement");
 
-                Departement leDepartement = departementDAO.findDep(departement);
+                Departement leDepartement = departementDAO.findById(departement);
                 this.aers.add(new Aeroport(nom, adresse, leDepartement));
             }
         } catch (SQLException ex) {
@@ -74,4 +80,7 @@ public class AeroportDAO extends DAO <Aeroport> {
         }
         return aers;
     }
+
+    
+    
 }

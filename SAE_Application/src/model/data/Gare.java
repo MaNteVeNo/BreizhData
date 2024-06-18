@@ -199,9 +199,9 @@ public class Gare {
 
         String code = "Le code de la gare est: " + this.codeGare;
         String nom = "Le nom de la gare est: " + this.nomGare;
-        String estFret = "L'état de estFret est: " + this.estFret;
-        String estVoyageur = "L'état de estVoyageur est: " + this.estVoyageur;
+        String estFret = "La gare est commerciale " + this.estFret;
+        String estVoyageur = "La gare est transporte des voyageurs " + this.estVoyageur;
 
-        return code + "\n" + nom + "\n" + estFret + "\n" + estVoyageur;
+        return "\n" + code + "\n" + nom + "\n" + estFret + "\n" + estVoyageur;
     }
 }
