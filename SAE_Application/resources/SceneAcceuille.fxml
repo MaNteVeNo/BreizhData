@@ -27,7 +27,7 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="71.0" prefWidth="722.0">
                            <children>
                               <AnchorPane layoutX="306.0" layoutY="11.0" prefHeight="46.0" prefWidth="83.0" />
-                              <ImageView fitHeight="90.0" fitWidth="109.0" layoutX="686.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="profil" fitHeight="90.0" fitWidth="109.0" layoutX="686.0" layoutY="14.0" onDragDetected="#clickOnProfilAcc" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@image/profile.png" />
                                  </image>
