@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BDFirstController">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.InscriptionController">
    <children>
       <ImageView fitHeight="177.0" fitWidth="180.0" layoutX="872.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -42,5 +42,6 @@
             <Font size="20.0" />
          </font>
       </TextField>
+      <Button fx:id="buttonRetourAcceuille" layoutX="32.0" layoutY="19.0" mnemonicParsing="false" onAction="#clickAcceuilleReturn" text="Acceuille" />
    </children>
 </fx:root>
