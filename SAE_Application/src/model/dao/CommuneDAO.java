@@ -21,7 +21,7 @@ public class CommuneDAO extends DAO<Commune> {
 
     public int create(Commune commune) {
         this.comms.add(commune);
-        String query = "INSERT INTO commune(id, nom, departement) VALUES ('" + commune.getIdCommune() + "','" + commune.getNomCommune() + "','" + commune.getLeDepartement()+ "')";
+        String query = "INSERT INTO commune(idCommune, nomCommune, leDepartement) VALUES ('" + commune.getIdCommune() + "','" + commune.getNomCommune() + "','" + commune.getLeDepartement().getIdDep()+ "')";
         try (Connection con = getConnection(); Statement st = con.createStatement()) {
             return st.executeUpdate(query);
         } catch (SQLException ex) {
@@ -31,7 +31,7 @@ public class CommuneDAO extends DAO<Commune> {
     }
 
     public int update(Commune commune) {
-        String query = "UPDATE commune SET nom='" + commune.getNomCommune() + "', PWD='" + commune.getIdCommune() + "' WHERE nom='" + commune.getNomCommune() + "'";
+        String query = "UPDATE commune SET nomCommune='" + commune.getNomCommune() + "', leDepartement='" + commune.getLeDepartement().getIdDep() + "' WHERE idCommune='" + commune.getIdCommune() + "'";
         try (Connection con = getConnection(); Statement st = con.createStatement()) {
             for (int i = 0; i < this.comms.size(); i++) {
                 if (commune.getNomCommune().equals(this.comms.get(i).getNomCommune())) {
@@ -49,7 +49,7 @@ public class CommuneDAO extends DAO<Commune> {
 
     public int delete(Commune commune) {
         this.comms.remove(commune); 
-        String query = "DELETE FROM commune WHERE nom='" + commune.getNomCommune() + "'";
+        String query = "DELETE FROM commune WHERE idCommune='" + commune.getIdCommune() + "'";
         try (Connection con = getConnection(); Statement st = con.createStatement()) {
             return st.executeUpdate(query);
         } catch (SQLException ex) {
@@ -58,16 +58,16 @@ public class CommuneDAO extends DAO<Commune> {
         }
     }
 
-    public Commune findComm(int id) {
+    public Commune findById(int id) {
         Commune comm = null;
-        String query = "SELECT * FROM Commune WHERE idCommune=" + id;
+        String query = "SELECT * FROM commune WHERE idCommune=" + id;
         try (Connection con = getConnection(); Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery(query);
             if (rs.next()) {
                 String nom = rs.getString("nomCommune");
                 int dep = rs.getInt("leDepartement");
 
-                Departement leDepartement = departementDAO.findDep(dep);
+                Departement leDepartement = departementDAO.findById(dep);
                 comm = new Commune(id, nom, leDepartement);
             }
         } catch (SQLException ex) {
@@ -81,11 +81,11 @@ public class CommuneDAO extends DAO<Commune> {
         try (Connection con = getConnection(); Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery("SELECT * FROM commune");
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String nom = rs.getString("nom");
-                int departement = rs.getInt("departement");
+                int id = rs.getInt("idCommune");
+                String nom = rs.getString("nomCommune");
+                int departement = rs.getInt("leDepartement");
 
-                Departement leDepartement = departementDAO.findDep(departement);
+                Departement leDepartement = departementDAO.findById(departement);
                 Commune commune = new Commune(id, nom, leDepartement);
                 this.comms.add(commune);
             }

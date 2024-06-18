@@ -35,6 +35,7 @@ public class AnneeDAO extends DAO<Annee> {
                 if (annee.getAnnee() == this.annees.get(i).getAnnee()) {
                     this.annees.remove(i);
                     this.annees.add(annee);
+                    break;
                 }
             }
             return st.executeUpdate(query);
@@ -55,9 +56,9 @@ public class AnneeDAO extends DAO<Annee> {
         }
     }
 
-    public Annee findAnnee(int id) {
+    public Annee findById(int id) {
         Annee an = null;
-        String query = "SELECT * FROM Annee WHERE annee=" + id;
+        String query = "SELECT * FROM annee WHERE annee='" + id + "'";
         try (Connection con = getConnection(); Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery(query);
             if (rs.next()) {

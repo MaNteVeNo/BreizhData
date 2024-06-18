@@ -25,6 +25,8 @@ public abstract class DAO <T> {
 
     public abstract List <T> findAll ();
 
+    public abstract T findById(int id);
+
     public abstract int update(T user);
 
     public abstract int delete(T user);
