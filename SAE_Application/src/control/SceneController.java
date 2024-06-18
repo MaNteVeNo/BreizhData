@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,8 +14,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import model.data.User;
 
-public class BDFirstController {
+public class SceneController {
 
     private Stage stage;
     private Scene scene;
@@ -30,9 +32,9 @@ public class BDFirstController {
     private boolean isNomInscriFilled = false;
 
     // Constructeur par défaut
-    public BDFirstController() {}
+    public SceneController() {}
 
-    public BDFirstController(Stage primaryStage){
+    public SceneController(Stage primaryStage){
         this.stage = primaryStage;
     }
 
@@ -55,19 +57,10 @@ public class BDFirstController {
     private Button buttonCreateAccount;
 
     @FXML
-    private TextField prenomTextConnexion;
+    private TextField userTextConnexion;
 
     @FXML
-    private TextField nomTextConnexion;
-
-    @FXML
-    private TextField textPrnomInscri;
-
-    @FXML
-    private TextField textNameInscri;
-
-    @FXML
-    private TextField mailAdresseInscri;
+    private TextField textUserInscri;
 
     @FXML
     private TextField confirmationMdpInscri;
@@ -93,10 +86,9 @@ public class BDFirstController {
         if (isConfirmationMdpFilled && isMdpFilled && isMailAdresseFilled && isPrenomInscriFilled && isNomInscriFilled) {
             // Enregistre les informations de l'utilisateur
             registeredUser = new User(
-                textPrnomInscri.getText(),
-                textNameInscri.getText(),
-                mailAdresseInscri.getText(),
-                mdpInscri.getText()
+                textUserInscri.getText(),
+                mdpInscri.getText(),
+                false
             );
 
             try {
@@ -147,8 +139,7 @@ public class BDFirstController {
     void clickForConnected(ActionEvent event) {
         if (isPrenomFilled && isNomFilled) {
             if (registeredUser != null &&
-                registeredUser.getPrenom().equals(prenomTextConnexion.getText()) &&
-                registeredUser.getNom().equals(nomTextConnexion.getText())) {
+                registeredUser.getNomUtilisateur().equals(userTextConnexion.getText())) {
                 try {
                     Parent root = FXMLLoader.load(getClass().getResource("/fxml/SceneAcceuille.fxml"));
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -189,12 +180,7 @@ public class BDFirstController {
 
     @FXML
     void entrySurnameConnexion(ActionEvent event) {
-        isPrenomFilled = !prenomTextConnexion.getText().trim().isEmpty();
-    }
-
-    @FXML
-    void entryNameConnexion(ActionEvent event) {
-        isNomFilled = !nomTextConnexion.getText().trim().isEmpty();
+        isPrenomFilled = !userTextConnexion.getText().trim().isEmpty();
     }
 
     @FXML
@@ -206,19 +192,9 @@ public class BDFirstController {
     void loadMdpInscri(ActionEvent event) {
         isMdpFilled = !mdpInscri.getText().trim().isEmpty();
     }
-
-    @FXML
-    void textMailAdresseInscri(ActionEvent event) {
-        isMailAdresseFilled = !mailAdresseInscri.getText().trim().isEmpty();
-    }
-
     @FXML
     void entryPrenomInscri(ActionEvent event) {
-        isPrenomInscriFilled = !textPrnomInscri.getText().trim().isEmpty();
+        isPrenomInscriFilled = !textUserInscri.getText().trim().isEmpty();
     }
 
-    @FXML
-    void entryTextNameInscri(ActionEvent event) {
-        isNomInscriFilled = !textNameInscri.getText().trim().isEmpty();
-    }
 }

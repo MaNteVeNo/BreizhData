@@ -22,9 +22,7 @@ public class UserDAO extends DAO<User> {
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 users.add(new User(
-                    rs.getString("prenom"),
-                    rs.getString("nom"),
-                    rs.getString("email"),
+                    rs.getString("nomUtilisateur"),
                     rs.getString("mdp"),
                     rs.getBoolean("estAdmin")
                 ));
@@ -40,17 +38,15 @@ public class UserDAO extends DAO<User> {
         return null;
     }
 
-    public User findByMail(String mail) {
-        String query = "SELECT * FROM user WHERE email = ?";
+    public User findByNomUtilisateur(String nomUtilisateur) {
+        String query = "SELECT * FROM user WHERE nomUtilisateur = ?";
         try (Connection connection = getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setString(1, mail);
+            stmt.setString(1, nomUtilisateur);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new User(
-                        rs.getString("prenom"),
-                        rs.getString("nom"),
-                        rs.getString("email"),
+                        rs.getString("nomUtilisateur"),
                         rs.getString("mdp"),
                         rs.getBoolean("estAdmin")
                     );
@@ -64,16 +60,14 @@ public class UserDAO extends DAO<User> {
 
     @Override
     public int update(User user) {
-        String query = "UPDATE user SET prenom = ?, nom = ?, mdp = ?, estAdmin = ? WHERE email = ?";
+        String query = "UPDATE user SET mdp = ?, estAdmin = ? WHERE nomUtilisateur = ?";
         try (Connection connection = getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setString(1, user.getPrenom());
-            stmt.setString(2, user.getNom());
-            stmt.setString(3, user.getMdp());
-            stmt.setBoolean(4, user.isEstAdmin());
-            stmt.setString(5, user.getMail());
+            stmt.setString(1, user.getMdp());
+            stmt.setBoolean(2, user.isEstAdmin());
+            stmt.setString(3, user.getNomUtilisateur());
             for (int i = 0; i < this.users.size(); i++) {
-                if (user.getMail().equals(this.users.get(i).getMail())) {
+                if (user.getNomUtilisateur().equals(this.users.get(i).getNomUtilisateur())) {
                     this.users.remove(i);
                     this.users.add(user);
                     break;
@@ -89,10 +83,10 @@ public class UserDAO extends DAO<User> {
     @Override
     public int delete(User user) {
         this.users.remove(user);
-        String query = "DELETE FROM user WHERE email = ?";
+        String query = "DELETE FROM user WHERE nomUtilisateur = ?";
         try (Connection connection = getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setString(1, user.getMail());
+            stmt.setString(1, user.getNomUtilisateur());
             return stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -103,14 +97,12 @@ public class UserDAO extends DAO<User> {
     @Override
     public int create(User user) {
         this.users.add(user);
-        String query = "INSERT INTO user (prenom, nom, email, mdp, estAdmin) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO user (nomUtilisateur, mdp, estAdmin) VALUES (?, ?, ?)";
         try (Connection connection = getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setString(1, user.getPrenom());
-            stmt.setString(2, user.getNom());
-            stmt.setString(3, user.getMail());
-            stmt.setString(4, user.getMdp());
-            stmt.setBoolean(5, user.isEstAdmin());
+            stmt.setString(1, user.getNomUtilisateur());
+            stmt.setString(2, user.getMdp());
+            stmt.setBoolean(3, user.isEstAdmin());
             return stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
